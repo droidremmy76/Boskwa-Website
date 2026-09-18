@@ -1,0 +1,9 @@
+﻿# Raw source media (~600MB of originals incl. RAW files). The site uses the
+# optimised copies in site/assets. Keep originals backed up separately.
+biskwa construction/
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+node_modules/

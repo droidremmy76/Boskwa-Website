@@ -1,0 +1,1223 @@
+/* ==========================================================================
+   BOKSWA INVESTMENTS (U) LIMITED
+   "Strong materials for strong structures."
+   --------------------------------------------------------------------------
+   ELEMENTOR TRANSFER NOTES
+   - Every colour + font below is a CSS custom property that maps 1:1 onto an
+     Elementor Global Color / Global Font slot. See ELEMENTOR-BUILD.md.
+   - Layout is FLEXBOX ONLY. There is no CSS grid anywhere in this file.
+   - .bk-row has gap:0 by design. All spacing lives in .bk-col padding, so
+     percentage widths never overflow 100% and never force a flex-wrap break.
+   - Card images use fixed height + object-fit:cover (the Image widget's
+     Height control), never custom image sizes.
+   ========================================================================== */
+
+@import url("fonts.css");
+
+/* --------------------------------------------------------------------------
+   1. TOKENS  →  Elementor Site Settings
+   -------------------------------------------------------------------------- */
+:root {
+  /* --- Global Colors --------------------------------------------------- */
+  --bk-primary:    #FF7D24;   /* Elementor "Primary"   — BOKSWA Orange      */
+  --bk-secondary:  #201D1E;   /* Elementor "Secondary" — Charcoal           */
+  --bk-text:       #2A2A2C;   /* Elementor "Text"                           */
+  --bk-accent:     #FF7D24;   /* Elementor "Accent"                         */
+  /* Custom global colours
+     Surface values follow the reference system's discipline: a single near-black
+     stage with a slight green cast, one step of lift for nested panels, and a
+     warm cream as the only light surface. Pure #fff and pure #000 are both
+     avoided on purpose — the warmth is what stops it reading as generic dark UI. */
+  --bk-black:      #0E100F;   /* Surface 0 — page canvas                   */
+  --bk-ink:        #191919;   /* Surface 1 — nested panels, alternating     */
+  --bk-concrete:   #8A867C;   /* Muted secondary text, rest-state icons     */
+  --bk-dust:       #F1ECDB;   /* Surface 2 — warm cream, primary on dark    */
+  --bk-white:      #FBF8EC;   /* Near-white cream for headings, never #fff  */
+
+  /* Derived (not global slots) */
+  --bk-primary-dk: #E06412;
+  --bk-on-primary: #201D1E;   /* Text/icons on orange. White on #FF7D24 is ~2.4:1 and fails WCAG; charcoal is ~7:1 */
+  --bk-line-dark:  #42433D;   /* Solid hairline, not a translucent white    */
+  --bk-line-light: rgba(32, 29, 30, .16);
+  --bk-scrim:      rgba(14, 16, 15, .62);
+
+  /* --- Global Fonts ----------------------------------------------------- */
+  --bk-font-display: "Archivo", "Arial Narrow", sans-serif;  /* Primary   */
+  --bk-font-sub:     "Archivo", Arial, sans-serif;           /* Secondary */
+  --bk-font-body:    "Inter", -apple-system, sans-serif;     /* Text      */
+  --bk-font-mono:    "IBM Plex Mono", "Courier New", monospace; /* Accent */
+
+  /* --- Type scale -------------------------------------------------------
+     Editorial display at the top, compact UI at the bottom, and deliberately
+     little in between. Each step maps to an Elementor typography preset.
+     Display and heading-lg are fluid so the headline fills the measure at any
+     width and reaches its full size on large screens. */
+  --bk-t-caption:     14px;
+  --bk-t-body-sm:     16px;
+  --bk-t-body:        18px;
+  --bk-t-body-lg:     clamp(1.2rem, .95rem + .55vw, 1.375rem);  /* 19.2px → 22px; always a clear step above body */
+  --bk-t-subheading:  clamp(1.3rem, 2.1vw, 1.875rem);   /* → 30px */
+  --bk-t-heading-sm:  clamp(1.7rem, 3vw, 2.75rem);      /* → 44px */
+  --bk-t-heading:     clamp(2.2rem, 5vw, 4.13rem);      /* → 66px */
+  --bk-t-heading-lg:  clamp(2.6rem, 7vw, 6.31rem);      /* → 101px */
+  --bk-t-display:     clamp(2.6rem, 7.6vw, 11rem);      /* → 176px ceiling */
+
+  --bk-track-display: -.022em;
+  --bk-track-head:    -.011em;
+  --bk-track-ui:      -.01em;
+
+  /* --- Metrics ---------------------------------------------------------- */
+  --bk-nav-h: 78px;
+  --bk-gut: clamp(20px, 4vw, 68px);
+  --bk-max: 1560px;
+  --bk-ease: cubic-bezier(.22, 1, .36, 1);
+  --bk-ease-io: cubic-bezier(.65, .05, .36, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET / BASE
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html.bk-lock, body.bk-lock { overflow: hidden; }
+
+body {
+  margin: 0;
+  background: var(--bk-black);
+  color: var(--bk-text);
+  font-family: var(--bk-font-body);
+  font-size: var(--bk-t-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--bk-primary); outline-offset: 3px; }
+
+.bk-skip {
+  position: absolute; left: -9999px; top: 0; z-index: 999;
+  background: var(--bk-primary); color: var(--bk-on-primary); padding: 14px 22px;
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption);
+}
+.bk-skip:focus { left: 0; }
+.bk-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. LAYOUT PRIMITIVES  →  Elementor Container (Flexbox)
+   -------------------------------------------------------------------------- */
+.bk-section { position: relative; padding: clamp(74px, 9vw, 150px) 0; }
+.bk-section--flush { padding: 0; }
+.bk-section--tight { padding: clamp(48px, 5vw, 80px) 0; }
+
+.bk-wrap {
+  width: 100%; max-width: var(--bk-max);
+  margin: 0 auto; padding: 0 var(--bk-gut);
+}
+.bk-wrap--wide { max-width: 1840px; }
+.bk-wrap--narrow { max-width: 1080px; }
+
+/* gap:0 is deliberate — spacing lives in .bk-col padding */
+.bk-row { display: flex; flex-wrap: wrap; gap: 0; width: 100%; align-items: stretch; }
+.bk-row--mid { align-items: center; }
+.bk-row--end { align-items: flex-end; }
+.bk-row--between { justify-content: space-between; }
+.bk-row--center { justify-content: center; }
+
+.bk-col { flex: 1 1 100%; min-width: 0; padding: 0; }
+.bk-col--pad { padding: clamp(18px, 2vw, 30px); }
+.bk-col--pr { padding-right: clamp(20px, 3.4vw, 56px); }
+.bk-col--pl { padding-left: clamp(20px, 3.4vw, 56px); }
+
+@media (min-width: 861px) {
+  .bk-col--2  { flex-basis: 50%;    max-width: 50%; }
+  .bk-col--3  { flex-basis: 33.333%; max-width: 33.333%; }
+  .bk-col--4  { flex-basis: 25%;    max-width: 25%; }
+  .bk-col--5  { flex-basis: 20%;    max-width: 20%; }
+  .bk-col--38 { flex-basis: 38%;    max-width: 38%; }
+  .bk-col--42 { flex-basis: 42%;    max-width: 42%; }
+  .bk-col--58 { flex-basis: 58%;    max-width: 58%; }
+  .bk-col--62 { flex-basis: 62%;    max-width: 62%; }
+}
+@media (min-width: 601px) and (max-width: 860px) {
+  .bk-col--3, .bk-col--4, .bk-col--5 { flex-basis: 50%; max-width: 50%; }
+}
+
+/* --------------------------------------------------------------------------
+   4. THEME SURFACES
+   -------------------------------------------------------------------------- */
+.bk-dark  { background: var(--bk-black); color: var(--bk-dust); }
+.bk-ink   { background: var(--bk-ink);   color: var(--bk-dust); }
+.bk-light { background: var(--bk-dust);  color: var(--bk-secondary); }
+.bk-white { background: var(--bk-white); color: var(--bk-secondary); }
+.bk-dark  .bk-h1, .bk-dark  .bk-h2, .bk-dark  .bk-h3,
+.bk-ink   .bk-h1, .bk-ink   .bk-h2, .bk-ink   .bk-h3 { color: var(--bk-white); }
+.bk-light .bk-h1, .bk-light .bk-h2, .bk-light .bk-h3,
+.bk-white .bk-h1, .bk-white .bk-h2, .bk-white .bk-h3 { color: var(--bk-secondary); }
+
+/* --------------------------------------------------------------------------
+   5. TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+.bk-h1, .bk-h2, .bk-h3, .bk-h4 {
+  font-family: var(--bk-font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--bk-track-head);
+  line-height: .94;
+  margin: 0;
+  text-wrap: balance;
+}
+/* Hierarchy, top to bottom — each step differs from its neighbour in at
+   least two of size, weight, case and colour, so levels never blur:
+   eyebrow  14px mono, orange, wide-tracked caps         (label)
+   H1/H2    101 / 66px Archivo 900/800 caps, cream       (statement)
+   H3       30px Archivo 800 caps, cream                 (section item)
+   H4       20px Archivo 700 caps, cream                 (card title)
+   lede     22px Inter 400, 80% cream                    (introduction)
+   body     18px Inter 400, 72% cream, 1.7 leading       (reading text) */
+.bk-h1 { font-size: var(--bk-t-heading-lg); font-weight: 900; line-height: 1; letter-spacing: var(--bk-track-display); }
+.bk-h2 { font-size: var(--bk-t-heading);    line-height: 1; }
+.bk-h3 { font-size: var(--bk-t-subheading); line-height: 1.06; }
+.bk-h4 { font-size: 1.25rem; font-weight: 700; line-height: 1.2; letter-spacing: .005em; }
+
+.bk-eyebrow {
+  font-family: var(--bk-font-mono);
+  font-size: var(--bk-t-caption); font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--bk-primary);
+  margin: 0 0 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.bk-eyebrow::before {
+  content: ""; width: 22px; height: 2px;
+  background: var(--bk-primary); flex: none;
+}
+.bk-eyebrow--plain::before { display: none; }
+
+.bk-lede {
+  font-size: var(--bk-t-body-lg);
+  line-height: 1.5; margin: 24px 0 0; max-width: 52ch;
+  letter-spacing: -.005em;
+  color: inherit; opacity: .84;
+}
+.bk-body { margin: 18px 0 0; max-width: 62ch; line-height: 1.7; opacity: 1; color: rgba(241, 236, 219, .72); }
+.bk-light .bk-body, .bk-white .bk-body { color: rgba(32, 29, 30, .78); }
+.bk-dark .bk-lede, .bk-ink .bk-lede { color: rgba(241, 236, 219, .8); opacity: 1; }
+
+.bk-mono {
+  font-family: var(--bk-font-mono);
+  font-size: var(--bk-t-caption); letter-spacing: .15em; text-transform: uppercase;
+}
+.bk-num {
+  font-family: var(--bk-font-mono); font-weight: 500;
+  color: var(--bk-primary); font-size: var(--bk-t-caption); letter-spacing: .1em;
+}
+.bk-or { color: var(--bk-primary); }
+
+/* --------------------------------------------------------------------------
+   6. BUTTONS  →  Elementor Button widget
+   -------------------------------------------------------------------------- */
+/* Solid, borderless, 12px corners. The outline border is gone; a focus ring
+   still appears for keyboard users only (:focus-visible), never on click. */
+.bk-btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 15px 26px; overflow: hidden; isolation: isolate;
+  font-family: var(--bk-font-display); font-size: var(--bk-t-body-sm); font-weight: 700;
+  line-height: 1; letter-spacing: .01em; text-transform: none; white-space: nowrap;
+  background: var(--bk-primary); color: var(--bk-on-primary);
+  border: 0; border-radius: 12px;
+  transition: color .4s var(--bk-ease), transform .35s var(--bk-ease), box-shadow .4s var(--bk-ease);
+  cursor: pointer; z-index: 0;
+}
+.bk-btn::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  background: var(--bk-secondary);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .52s var(--bk-ease);
+}
+.bk-btn:hover::before, .bk-btn:focus-visible::before { transform: scaleX(1); }
+.bk-btn:hover { color: var(--bk-white); transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(255, 125, 36, .55); }
+.bk-btn:active { transform: translateY(0) scale(.98); }
+.bk-btn:focus { outline: none; }
+.bk-btn:focus-visible { outline: 2px solid var(--bk-white); outline-offset: 3px; }
+.bk-btn i { font-size: 15px; }
+.bk-btn i, .bk-btn .bk-btn__ar { transition: transform .42s var(--bk-ease); }
+.bk-btn:hover .bk-btn__ar { transform: translateX(5px); }
+
+/* Primary, ghost and dark all share the solid-orange treatment above. */
+.bk-btn--primary, .bk-btn--ghost, .bk-btn--dark { background: var(--bk-primary); color: var(--bk-on-primary); }
+
+/* WhatsApp keeps its own brand green; charcoal text for contrast (white on
+   green fails WCAG), wiping to a deeper green with white text on hover. */
+.bk-btn--wa { background: #25D366; color: var(--bk-on-primary); }
+.bk-btn--wa::before { background: #128C4A; }
+.bk-btn--wa:hover { color: #fff; box-shadow: 0 10px 24px -10px rgba(37, 211, 102, .55); }
+
+.bk-btns { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+
+/* Text link + arrow chip ("View product  [→]").
+   Adapted from the reference's text-plus-round-button link; the chip is square
+   here so it belongs to the brick geometry. Markup is unchanged: the arrow
+   already lives in .bk-btn__ar, which becomes the chip. */
+.bk-link {
+  display: inline-flex; align-items: center; gap: 16px;
+  font-family: var(--bk-font-display); font-weight: 700;
+  font-size: 18px; letter-spacing: var(--bk-track-ui); text-transform: none;
+  color: var(--bk-white); position: relative;
+  transition: color .4s var(--bk-ease);
+}
+.bk-link .bk-btn__ar {
+  flex: none; width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--bk-line-dark); color: var(--bk-primary);
+  font-family: var(--bk-font-body); font-size: 17px;
+  transition: background .42s var(--bk-ease), border-color .42s var(--bk-ease),
+              color .42s var(--bk-ease), transform .42s var(--bk-ease);
+}
+.bk-link:hover .bk-btn__ar, .bk-link:focus-visible .bk-btn__ar {
+  background: var(--bk-primary); border-color: var(--bk-primary);
+  color: var(--bk-on-primary); transform: translateX(5px);
+}
+
+/* --------------------------------------------------------------------------
+   7. BRICK GRID MOTIF  (from the logo mark)
+   -------------------------------------------------------------------------- */
+.bk-brick { display: flex; gap: 4px; align-items: center; }
+.bk-brick span {
+  display: block; width: 15px; height: 7px; background: var(--bk-primary);
+  opacity: .28;
+}
+.bk-brick span:nth-child(2n) { opacity: .62; }
+.bk-brick span:nth-child(3n) { opacity: 1; }
+
+.bk-rule {
+  height: 1px; width: 100%; border: 0; margin: 0;
+  background: var(--bk-line-dark);
+}
+.bk-light .bk-rule, .bk-white .bk-rule { background: var(--bk-line-light); }
+
+/* --------------------------------------------------------------------------
+   8. HEADER + NAVIGATION  →  Xpro Theme Builder header template
+   -------------------------------------------------------------------------- */
+.bk-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 120;
+  height: var(--bk-nav-h);
+  display: flex; align-items: center; isolation: isolate;
+  transition: background .45s var(--bk-ease), border-color .45s var(--bk-ease);
+  border-bottom: 1px solid transparent;
+}
+/* A dark gradient behind the transparent header, so the links always sit on
+   a dark base instead of whatever frame of the hero video is behind them. */
+.bk-header::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: -48px; z-index: -1;
+  background: linear-gradient(180deg, rgba(14, 16, 15, .88) 0%, rgba(14, 16, 15, .55) 55%, rgba(14, 16, 15, 0) 100%);
+  pointer-events: none; transition: opacity .45s var(--bk-ease);
+}
+.bk-header.is-stuck::before { opacity: 0; }
+.bk-header.is-stuck {
+  background: rgba(14, 16, 15, .96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: var(--bk-line-dark);
+}
+.bk-header__in {
+  width: 100%; max-width: 1840px; margin: 0 auto;
+  padding: 0 var(--bk-gut);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.bk-logo { display: flex; align-items: center; flex: none; }
+/* Logo sizing is width-driven: height follows from the locked aspect ratio,
+   so the box can never take a different shape from the artwork, and
+   object-fit: cover therefore never crops or stretches it. */
+.bk-logo img { width: 126px; height: auto; max-width: 100%; aspect-ratio: 1200 / 364; object-fit: cover; }
+
+.bk-nav { display: flex; align-items: center; gap: 2px; }
+.bk-nav a {
+  position: relative; padding: 10px 14px;
+  font-family: var(--bk-font-display); font-weight: 600; font-size: 15px;
+  letter-spacing: .04em; text-transform: uppercase;
+  color: rgba(241, 236, 219, .9);
+  text-shadow: 0 1px 12px rgba(14, 16, 15, .6);
+  transition: color .34s var(--bk-ease);
+}
+.bk-nav a::after {
+  content: ""; position: absolute; left: 14px; right: 14px; bottom: 3px;
+  height: 2px; border-radius: 2px; background: var(--bk-primary);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .42s var(--bk-ease);
+}
+.bk-nav a:hover, .bk-nav a[aria-current="page"] { color: var(--bk-white); }
+.bk-nav a:focus { outline: none; }
+.bk-nav a:focus-visible { outline: 2px solid var(--bk-primary); outline-offset: 2px; border-radius: 6px; }
+.bk-nav a:hover::after, .bk-nav a[aria-current="page"]::after {
+  transform: scaleX(1); transform-origin: left;
+}
+.bk-header__cta { display: flex; align-items: center; gap: 10px; flex: none; }
+
+.bk-burger {
+  display: none; width: 46px; height: 46px; flex: none;
+  align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+  border: 1px solid var(--bk-line-dark);
+}
+.bk-burger span {
+  display: block; width: 18px; height: 1.5px; background: var(--bk-white);
+  transition: transform .4s var(--bk-ease), opacity .3s var(--bk-ease);
+}
+.bk-burger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.bk-burger.is-open span:nth-child(2) { opacity: 0; }
+.bk-burger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile overlay menu */
+.bk-mobnav {
+  position: fixed; inset: 0; z-index: 115;
+  background: var(--bk-black);
+  padding: calc(var(--bk-nav-h) + 26px) var(--bk-gut) 40px;
+  display: flex; flex-direction: column;
+  transform: translateY(-100%);
+  transition: transform .62s var(--bk-ease);
+  overflow-y: auto; visibility: hidden;
+}
+.bk-mobnav.is-open { transform: translateY(0); visibility: visible; }
+.bk-mobnav__list { display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.bk-mobnav__list li { border-bottom: 1px solid var(--bk-line-dark); }
+.bk-mobnav__list a {
+  display: flex; align-items: baseline; gap: 16px; padding: 19px 0;
+  font-family: var(--bk-font-display); font-weight: 800;
+  font-size: clamp(1.6rem, 7vw, 2.4rem); text-transform: uppercase;
+  letter-spacing: -.02em; color: var(--bk-white); line-height: 1;
+  opacity: 0; transform: translateY(18px);
+}
+.bk-mobnav.is-open .bk-mobnav__list a { animation: bkMobIn .62s var(--bk-ease) forwards; }
+.bk-mobnav__list li:nth-child(1) a { animation-delay: .10s; }
+.bk-mobnav__list li:nth-child(2) a { animation-delay: .15s; }
+.bk-mobnav__list li:nth-child(3) a { animation-delay: .20s; }
+.bk-mobnav__list li:nth-child(4) a { animation-delay: .25s; }
+.bk-mobnav__list li:nth-child(5) a { animation-delay: .30s; }
+.bk-mobnav__list li:nth-child(6) a { animation-delay: .35s; }
+.bk-mobnav__list a span { font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); color: var(--bk-primary); font-weight: 500; }
+@keyframes bkMobIn { to { opacity: 1; transform: translateY(0); } }
+.bk-mobnav__foot { margin-top: auto; padding-top: 34px; }
+.bk-mobnav__foot .bk-btn { width: 100%; justify-content: center; margin-bottom: 10px; }
+
+@media (max-width: 1100px) {
+  .bk-nav { display: none; }
+  .bk-burger { display: flex; }
+  .bk-header__cta .bk-btn--primary { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   9. PERSISTENT QUOTE RAIL  (desktop side / mobile bottom bar)
+   -------------------------------------------------------------------------- */
+.bk-rail {
+  position: fixed; right: 0; top: 50%; transform: translateY(-50%);
+  z-index: 110; display: flex; flex-direction: column;
+}
+.bk-rail a {
+  width: 54px; height: 54px; display: flex; align-items: center; justify-content: center;
+  background: var(--bk-secondary); color: var(--bk-white); font-size: 17px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  transition: background .34s var(--bk-ease), color .34s var(--bk-ease);
+  position: relative;
+}
+.bk-rail a:first-child { border-top-left-radius: 14px; }
+.bk-rail a:last-child { border-bottom: 0; border-bottom-left-radius: 14px; }
+.bk-rail a i { transition: transform .35s var(--bk-ease); }
+.bk-rail a:hover { background: var(--bk-primary); color: var(--bk-on-primary); }
+.bk-rail a:hover i { transform: scale(1.14); }
+.bk-rail a[data-rail="whatsapp"]:hover { background: #25D366; }
+.bk-rail a::after {
+  content: attr(data-label);
+  position: absolute; right: calc(100% + 8px); top: 50%; height: 40px;
+  display: flex; align-items: center; padding: 0 16px; border-radius: 10px;
+  background: var(--bk-primary); color: var(--bk-on-primary); white-space: nowrap;
+  font-family: var(--bk-font-display); font-weight: 700; font-size: var(--bk-t-caption); letter-spacing: .01em;
+  transform: translate(8px, -50%); opacity: 0; pointer-events: none;
+  transition: transform .4s var(--bk-ease), opacity .3s var(--bk-ease);
+}
+.bk-rail a[data-rail="whatsapp"]::after { background: #25D366; }
+.bk-rail a:hover::after { transform: translate(0, -50%); opacity: 1; }
+
+/* Mobile sticky dock: three rounded, icon-plus-label buttons floating above
+   the page edge, clear of the phone's home indicator. */
+.bk-mobar { display: none; }
+@media (max-width: 860px) {
+  .bk-rail { display: none; }
+  .bk-mobar {
+    position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); z-index: 110;
+    display: flex; gap: 8px; padding: 8px;
+    background: rgba(14, 16, 15, .9);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--bk-line-dark); border-radius: 18px;
+    box-shadow: 0 14px 34px -8px rgba(0, 0, 0, .6);
+  }
+  .bk-mobar a {
+    flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 0 10px; border-radius: 12px;
+    background: var(--bk-ink); color: var(--bk-white);
+    border: 1px solid var(--bk-line-dark);
+    font-family: var(--bk-font-display); font-weight: 700; font-size: 15px; letter-spacing: .01em;
+    text-transform: none; white-space: nowrap;
+    transition: transform .3s var(--bk-ease), background .3s var(--bk-ease),
+                border-color .3s var(--bk-ease), box-shadow .3s var(--bk-ease);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .bk-mobar a i { font-size: 16px; transition: transform .35s var(--bk-ease); }
+  .bk-mobar a:hover, .bk-mobar a:focus-visible { transform: translateY(-2px); border-color: var(--bk-primary); }
+  .bk-mobar a:hover i, .bk-mobar a:focus-visible i { transform: scale(1.15) rotate(-8deg); }
+  .bk-mobar a:active { transform: scale(.96); }
+  .bk-mobar a:focus { outline: none; }
+  .bk-mobar a:focus-visible { box-shadow: 0 0 0 2px var(--bk-white); }
+  .bk-mobar a[data-rail="whatsapp"] { background: #25D366; color: var(--bk-on-primary); border-color: transparent; }
+  .bk-mobar a[data-rail="whatsapp"]:hover { background: #1EBE5A; box-shadow: 0 0 0 4px rgba(37, 211, 102, .22); }
+  .bk-mobar a[data-rail="quote"] { background: var(--bk-primary); color: var(--bk-on-primary); border-color: transparent; }
+  .bk-mobar a[data-rail="quote"]:hover { background: #FF8F42; box-shadow: 0 0 0 4px rgba(255, 125, 36, .24); }
+  body { padding-bottom: 86px; }
+}
+
+/* --------------------------------------------------------------------------
+   10. PRELOADER  (branded brick-grid build)  [SHOWPIECE]
+   -------------------------------------------------------------------------- */
+.bk-preload {
+  position: fixed; inset: 0; z-index: 400; background: var(--bk-black);
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+}
+.bk-preload__grid { display: flex; flex-wrap: wrap; width: 132px; }
+.bk-preload__grid i {
+  display: block; width: 40px; height: 26px; margin: 2px;
+  background: var(--bk-primary); opacity: 0; transform: scale(.4);
+}
+.bk-preload__bar { width: 132px; height: 2px; background: rgba(255, 255, 255, .13); margin-top: 26px; }
+.bk-preload__bar b { display: block; height: 100%; width: 0; background: var(--bk-primary); }
+.bk-preload__meta {
+  display: flex; justify-content: space-between; width: 132px; margin-top: 12px;
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(241, 236, 219, .5);
+}
+.bk-preload.is-done { pointer-events: none; }
+
+/* --------------------------------------------------------------------------
+   11. HERO  [SHOWPIECE 1]
+   -------------------------------------------------------------------------- */
+.bk-hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: var(--bk-black); }
+.bk-hero__media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+.bk-hero__media video, .bk-hero__media img {
+  width: 100%; height: 100%; object-fit: cover;
+  will-change: transform;
+}
+.bk-hero__scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(12,12,13,.86) 0%, rgba(12,12,13,.30) 34%, rgba(12,12,13,.55) 66%, rgba(12,12,13,.95) 100%),
+    linear-gradient(90deg, rgba(12,12,13,.76) 0%, rgba(12,12,13,0) 62%);
+}
+.bk-hero__in { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(52px, 7vw, 104px); padding-top: calc(var(--bk-nav-h) + 40px); }
+.bk-hero__headline { margin: 0; }
+.bk-hero__headline .bk-line { display: block; overflow: hidden; }
+.bk-hero__headline .bk-line > span {
+  display: block;
+  font-family: var(--bk-font-display); font-weight: 900; text-transform: uppercase;
+  font-size: var(--bk-t-display); line-height: .9;
+  letter-spacing: var(--bk-track-display);
+  color: var(--bk-white);
+}
+.bk-hero__headline .bk-line:last-child > span { color: var(--bk-primary); }
+.bk-hero__sub { max-width: 44ch; margin: 34px 0 0; color: rgba(241,236,219,.8); font-size: var(--bk-t-body-lg); line-height: 1.45; letter-spacing: -.01em; }
+.bk-hero__cue {
+  position: absolute; right: var(--bk-gut); bottom: clamp(52px, 7vw, 104px); z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(241, 236, 219,.55);
+  writing-mode: vertical-rl;
+}
+.bk-hero__cue i { display: block; width: 1px; height: 54px; background: linear-gradient(180deg, var(--bk-primary), transparent); }
+@media (max-width: 860px) { .bk-hero__cue { display: none; } }
+
+.bk-hero__facts { display: flex; flex-wrap: wrap; margin-top: clamp(38px, 5vw, 62px); border-top: 1px solid var(--bk-line-dark); }
+.bk-hero__fact { flex: 1 1 140px; padding: 20px 26px 0 0; }
+.bk-hero__fact b { display: block; font-family: var(--bk-font-display); font-weight: 800; font-size: clamp(1.5rem,2.4vw,2.2rem); color: var(--bk-white); line-height: 1; }
+.bk-hero__fact span { display: block; margin-top: 7px; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .15em; text-transform: uppercase; color: rgba(241, 236, 219,.52); }
+
+/* --------------------------------------------------------------------------
+   12. MARQUEE / CAPABILITY STRIP
+   -------------------------------------------------------------------------- */
+.bk-marq { overflow: hidden; border-top: 1px solid var(--bk-line-dark); border-bottom: 1px solid var(--bk-line-dark); padding: 22px 0; background: var(--bk-ink); }
+.bk-marq__track { display: flex; width: max-content; animation: bkMarq 38s linear infinite; }
+.bk-marq__track > span {
+  display: flex; align-items: center; gap: 26px; padding-right: 26px;
+  font-family: var(--bk-font-display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(1.1rem, 2vw, 1.7rem); letter-spacing: -.01em; color: rgba(241, 236, 219,.34);
+  white-space: nowrap;
+}
+.bk-marq__track > span::after { content: ""; width: 7px; height: 7px; background: var(--bk-primary); flex: none; }
+.bk-marq:hover .bk-marq__track { animation-play-state: paused; }
+@keyframes bkMarq { to { transform: translateX(-50%); } }
+
+/* --------------------------------------------------------------------------
+   13. THE FILM — PRODUCT → APPLICATION → RESULT  [SHOWPIECE 2]
+   -------------------------------------------------------------------------- */
+.bk-film { position: relative; background: var(--bk-black); }
+.bk-film__stage { position: relative; height: 100svh; overflow: hidden; }
+.bk-film__chapters { position: absolute; inset: 0; }
+
+.film-chapter { position: absolute; inset: 0; opacity: 0; visibility: hidden; }
+.film-chapter.is-live { opacity: 1; visibility: visible; }
+
+.film-frame { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+.film-frame__img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.film-frame__veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,12,13,.72) 0%, rgba(12,12,13,.22) 38%, rgba(12,12,13,.88) 100%);
+}
+
+.film-caption {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4;
+  padding: 0 var(--bk-gut) clamp(76px, 9vw, 120px);
+}
+.film-caption__in { max-width: var(--bk-max); margin: 0 auto; width: 100%; }
+.film-kicker {
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .24em;
+  text-transform: uppercase; color: var(--bk-primary); margin: 0 0 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.film-kicker::before { content: ""; width: 24px; height: 2px; background: var(--bk-primary); }
+.film-title {
+  font-family: var(--bk-font-display); font-weight: 900; text-transform: uppercase;
+  font-size: var(--bk-t-heading-lg); line-height: .92;
+  letter-spacing: var(--bk-track-display);
+  color: var(--bk-white); margin: 0; max-width: 15ch;
+}
+.film-text { margin: 22px 0 0; max-width: 46ch; color: rgba(241,236,219,.8); font-size: var(--bk-t-body-lg); line-height: 1.45; }
+.film-specs { display: flex; flex-wrap: wrap; margin: 26px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--bk-line-dark); }
+.film-specs li { padding: 14px 32px 0 0; }
+.film-specs b { display: block; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .16em; text-transform: uppercase; color: rgba(241, 236, 219,.46); font-weight: 500; }
+.film-specs span { display: block; margin-top: 5px; font-family: var(--bk-font-display); font-weight: 700; font-size: 1.05rem; color: var(--bk-white); }
+
+/* progress HUD */
+.bk-film__hud {
+  position: absolute; left: var(--bk-gut); top: 50%; transform: translateY(-50%);
+  z-index: 6; display: flex; flex-direction: column; gap: 16px;
+}
+.bk-film__step { display: flex; align-items: center; gap: 12px; opacity: .34; transition: opacity .45s var(--bk-ease); }
+.bk-film__step.is-on { opacity: 1; }
+.bk-film__step i { display: block; width: 2px; height: 34px; background: rgba(241, 236, 219,.3); position: relative; overflow: hidden; }
+.bk-film__step i::after { content: ""; position: absolute; inset: 0; background: var(--bk-primary); transform: scaleY(0); transform-origin: top; transition: transform .4s linear; }
+.bk-film__step.is-on i::after { transform: scaleY(1); }
+.bk-film__step b { font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .18em; text-transform: uppercase; font-weight: 500; color: var(--bk-dust); }
+@media (max-width: 860px) { .bk-film__hud { display: none; } }
+
+.bk-film__bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: rgba(255,255,255,.1); z-index: 7; }
+.bk-film__bar b { display: block; height: 100%; width: 0; background: var(--bk-primary); }
+
+/* --------------------------------------------------------------------------
+   14. PRODUCT EXPLORER  [SHOWPIECE 3]
+   -------------------------------------------------------------------------- */
+.bk-explorer { position: relative; }
+.bk-explorer__rail { display: flex; flex-direction: column; border-top: 1px solid var(--bk-line-dark); }
+.bk-explorer__rail .explorer-item {
+  display: flex; align-items: baseline; gap: 16px; width: 100%; text-align: left;
+  padding: 21px 18px 21px 0; border-bottom: 1px solid var(--bk-line-dark);
+  position: relative; transition: padding-left .45s var(--bk-ease);
+}
+.bk-explorer__rail .explorer-item::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--bk-primary); transform: scaleY(0); transform-origin: bottom;
+  transition: transform .45s var(--bk-ease);
+}
+.explorer-item__n { font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); color: var(--bk-primary); flex: none; letter-spacing: .1em; }
+.explorer-item__t {
+  font-family: var(--bk-font-display); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(1.15rem, 1.9vw, 1.62rem); letter-spacing: -.015em; line-height: 1;
+  color: rgba(241, 236, 219,.56); transition: color .4s var(--bk-ease);
+}
+.explorer-item:hover .explorer-item__t { color: rgba(241, 236, 219,.9); }
+.explorer-item.is-active { padding-left: 18px; }
+.explorer-item.is-active::before { transform: scaleY(1); transform-origin: top; }
+.explorer-item.is-active .explorer-item__t { color: var(--bk-white); }
+
+.bk-explorer__stage { position: relative; min-height: 560px; }
+.explorer-panel {
+  position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none;
+  display: flex; flex-direction: column;
+  transition: opacity .5s var(--bk-ease);
+}
+.explorer-panel.is-active { opacity: 1; visibility: visible; pointer-events: auto; position: relative; }
+.explorer-panel__media { position: relative; overflow: hidden; height: clamp(300px, 46vh, 460px); }
+.explorer-panel__media img { width: 100%; height: 100%; object-fit: cover; }
+.explorer-panel__tag {
+  position: absolute; left: 0; top: 0; padding: 9px 16px; background: var(--bk-primary); color: var(--bk-on-primary);
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .16em; text-transform: uppercase;
+}
+.explorer-panel__body { padding: 30px 0 0; }
+.explorer-panel__specs { display: flex; flex-wrap: wrap; margin: 24px 0; padding: 0; list-style: none; border-top: 1px solid var(--bk-line-dark); }
+.explorer-panel__specs li { flex: 1 1 46%; padding: 15px 20px 0 0; }
+.explorer-panel__specs b { display: block; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .15em; text-transform: uppercase; color: rgba(241, 236, 219,.45); font-weight: 500; }
+.explorer-panel__specs span { display: block; margin-top: 4px; font-family: var(--bk-font-display); font-weight: 700; color: var(--bk-white); font-size: 1rem; }
+.is-tbd { color: var(--bk-primary) !important; font-family: var(--bk-font-mono) !important; font-size: var(--bk-t-caption) !important; font-weight: 500 !important; }
+
+/* --------------------------------------------------------------------------
+   15. CARDS / ICON BOXES  →  native Elementor widgets
+   -------------------------------------------------------------------------- */
+.bk-card { display: flex; flex-direction: column; height: 100%; background: var(--bk-ink); transition: transform .55s var(--bk-ease); }
+.bk-light .bk-card, .bk-white .bk-card { background: var(--bk-white); }
+.bk-card:hover { transform: translateY(-7px); }
+.bk-card__media { position: relative; overflow: hidden; height: 268px; }
+.bk-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--bk-ease); }
+.bk-card:hover .bk-card__media img { transform: scale(1.07); }
+.bk-card__n {
+  position: absolute; right: 0; top: 0; padding: 8px 13px; background: var(--bk-primary); color: var(--bk-on-primary);
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .12em;
+}
+.bk-card__body { padding: 26px 26px 30px; display: flex; flex-direction: column; flex: 1 1 auto; border-top: 2px solid transparent; transition: border-color .5s var(--bk-ease); }
+.bk-card:hover .bk-card__body { border-top-color: var(--bk-primary); }
+.bk-card__body p { margin: 12px 0 0; font-size: var(--bk-t-body-sm); line-height: 1.6; color: rgba(241, 236, 219, .72); }
+.bk-card__body .bk-link { margin-top: auto; padding-top: 22px; }
+
+.bk-iconbox { display: flex; flex-direction: column; height: 100%; padding: 32px 30px; background: var(--bk-ink); border-top: 2px solid var(--bk-primary); transition: transform .5s var(--bk-ease), background .5s var(--bk-ease); }
+.bk-light .bk-iconbox, .bk-white .bk-iconbox { background: var(--bk-white); }
+.bk-iconbox:hover { transform: translateY(-6px); }
+.bk-iconbox i { font-size: 25px; color: var(--bk-primary); margin-bottom: 20px; }
+.bk-iconbox p { margin: 11px 0 0; font-size: var(--bk-t-body-sm); line-height: 1.6; color: rgba(241, 236, 219, .72); }
+
+/* Step list (manufacturing) */
+.bk-step { display: flex; flex-direction: column; height: 100%; padding: 30px 26px 34px; border-top: 1px solid var(--bk-line-dark); position: relative; }
+.bk-step::after { content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 0; background: var(--bk-primary); transition: width .7s var(--bk-ease); }
+.bk-step:hover::after { width: 100%; }
+.bk-step b { font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .16em; color: var(--bk-primary); }
+.bk-step h3 { margin: 15px 0 0; }
+.bk-step p { margin: 11px 0 0; font-size: var(--bk-t-body-sm); line-height: 1.6; color: rgba(241, 236, 219, .72); }
+
+/* Media figure with reveal */
+.bk-figure { position: relative; overflow: hidden; }
+.bk-figure img { width: 100%; height: 100%; object-fit: cover; }
+.bk-figure--tall { height: clamp(360px, 60vh, 640px); }
+.bk-figure--mid { height: clamp(300px, 44vh, 480px); }
+.bk-figure__cap {
+  position: absolute; left: 0; bottom: 0; padding: 12px 18px; background: rgba(12,12,13,.82);
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .14em;
+  text-transform: uppercase; color: var(--bk-dust);
+}
+
+/* Stat block */
+.bk-stat { padding: 28px 24px 30px 0; }
+.bk-stat b { display: block; font-family: var(--bk-font-display); font-weight: 900; font-size: clamp(2.2rem,4vw,3.4rem); line-height: 1; color: var(--bk-primary); letter-spacing: -.03em; }
+.bk-stat span { display: block; margin-top: 10px; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .15em; text-transform: uppercase; opacity: .6; }
+
+/* --------------------------------------------------------------------------
+   16. ACCORDION  →  Elementor Accordion widget
+   -------------------------------------------------------------------------- */
+.bk-acc { border-top: 1px solid var(--bk-line-dark); }
+.bk-light .bk-acc, .bk-white .bk-acc { border-color: var(--bk-line-light); }
+.bk-acc__item { border-bottom: 1px solid var(--bk-line-dark); }
+.bk-light .bk-acc__item, .bk-white .bk-acc__item { border-color: var(--bk-line-light); }
+.bk-acc__head {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  width: 100%; text-align: left; padding: 22px 0;
+  font-family: var(--bk-font-display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(.95rem, 1.35vw, 1.12rem); letter-spacing: -.005em;
+  transition: color .35s var(--bk-ease);
+}
+.bk-acc__head:hover { color: var(--bk-primary); }
+.bk-acc__head i { color: var(--bk-primary); font-size: 13px; transition: transform .45s var(--bk-ease); flex: none; }
+.bk-acc__item.is-open .bk-acc__head i { transform: rotate(45deg); }
+.bk-acc__panel { overflow: hidden; height: 0; transition: height .5s var(--bk-ease); }
+.bk-acc__panel > div { padding: 0 0 26px; max-width: 74ch; opacity: .8; font-size: var(--bk-t-body-sm); }
+
+/* --------------------------------------------------------------------------
+   17. TESTIMONIALS + RATING  →  native widgets
+   -------------------------------------------------------------------------- */
+.bk-quote { display: flex; flex-direction: column; height: 100%; padding: 34px 30px; background: var(--bk-ink); border-left: 2px solid var(--bk-primary); }
+.bk-light .bk-quote, .bk-white .bk-quote { background: var(--bk-white); }
+.bk-quote__stars { display: flex; gap: 4px; color: var(--bk-primary); font-size: 13px; margin-bottom: 18px; }
+.bk-quote blockquote { margin: 0; font-size: 1.04rem; line-height: 1.62; }
+.bk-quote__by { margin-top: auto; padding-top: 22px; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .13em; text-transform: uppercase; opacity: .62; }
+
+/* --------------------------------------------------------------------------
+   18. GALLERY  →  Elementor Gallery widget + flex filter row
+   -------------------------------------------------------------------------- */
+.bk-filter { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 40px; }
+.bk-filter button {
+  padding: 11px 19px; border: 1px solid var(--bk-line-dark);
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(241, 236, 219,.66);
+  transition: all .35s var(--bk-ease);
+}
+.bk-light .bk-filter button, .bk-white .bk-filter button { border-color: var(--bk-line-light); color: rgba(32,29,30,.6); }
+.bk-filter button:hover { color: var(--bk-white); border-color: var(--bk-primary); }
+.bk-light .bk-filter button:hover, .bk-white .bk-filter button:hover { color: var(--bk-secondary); }
+.bk-filter button.is-active { background: var(--bk-primary); border-color: var(--bk-primary); color: var(--bk-on-primary); }
+
+.bk-gal { display: flex; flex-wrap: wrap; }
+.bk-gal__item { flex: 1 1 100%; padding: 5px; transition: opacity .45s var(--bk-ease), transform .45s var(--bk-ease); }
+@media (min-width: 601px) { .bk-gal__item { flex-basis: 50%; max-width: 50%; } }
+@media (min-width: 981px) { .bk-gal__item { flex-basis: 33.333%; max-width: 33.333%; } }
+.bk-gal__item.is-hidden { display: none; }
+/* Every tile is the same 4:3 frame regardless of the photo's own shape;
+   the photo fills it via object-fit:cover, so nothing is ever stretched.
+   margin:0 removes the browser's default 40px <figure> side margins. */
+.bk-gal__fig {
+  position: relative; display: block; overflow: hidden; margin: 0;
+  width: 100%; aspect-ratio: 4 / 3; height: auto; background: var(--bk-ink);
+}
+.bk-gal__fig img {
+  display: block; width: 100%; height: 100%; object-fit: cover; object-position: center;
+  transition: transform .85s var(--bk-ease);
+}
+.bk-gal__fig:hover img { transform: scale(1.08); }
+.bk-gal__fig figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 18px;
+  background: linear-gradient(0deg, rgba(12,12,13,.9), transparent);
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .13em;
+  text-transform: uppercase; color: var(--bk-dust);
+  transform: translateY(8px); opacity: 0; transition: all .45s var(--bk-ease);
+}
+.bk-gal__fig:hover figcaption { transform: translateY(0); opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   19. FORM  →  WPForms (style to match)
+   -------------------------------------------------------------------------- */
+.bk-form { display: flex; flex-wrap: wrap; }
+.bk-field { flex: 1 1 100%; padding: 0 0 20px; }
+@media (min-width: 681px) { .bk-field--h { flex-basis: 50%; max-width: 50%; } .bk-field--h:nth-child(odd) { padding-right: 10px; } .bk-field--h:nth-child(even) { padding-left: 10px; } }
+.bk-field label {
+  display: block; margin-bottom: 9px;
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .15em;
+  text-transform: uppercase; color: var(--bk-primary);
+}
+.bk-field input, .bk-field select, .bk-field textarea {
+  width: 100%; padding: 15px 16px; background: rgba(255,255,255,.04);
+  border: 1px solid var(--bk-line-dark); border-radius: 0;
+  color: var(--bk-white); font-family: var(--bk-font-body); font-size: var(--bk-t-body-sm);
+  transition: border-color .35s var(--bk-ease), background .35s var(--bk-ease);
+}
+.bk-light .bk-field input, .bk-light .bk-field select, .bk-light .bk-field textarea,
+.bk-white .bk-field input, .bk-white .bk-field select, .bk-white .bk-field textarea {
+  background: var(--bk-white); border-color: var(--bk-line-light); color: var(--bk-secondary);
+}
+.bk-field input:focus, .bk-field select:focus, .bk-field textarea:focus {
+  outline: none; border-color: var(--bk-primary); background: rgba(255,255,255,.07);
+}
+.bk-field textarea { min-height: 128px; resize: vertical; }
+.bk-field select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--bk-primary) 50%), linear-gradient(135deg, var(--bk-primary) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; }
+.bk-form__note { flex: 1 1 100%; font-size: var(--bk-t-caption); opacity: .6; margin: 6px 0 20px; }
+.bk-form__err { color: #FF6B5A; font-size: var(--bk-t-caption); margin-top: 6px; display: none; }
+.bk-field.has-err input, .bk-field.has-err select, .bk-field.has-err textarea { border-color: #FF6B5A; }
+.bk-field.has-err .bk-form__err { display: block; }
+
+/* --------------------------------------------------------------------------
+   20. FOOTER  →  Xpro Theme Builder footer template
+   -------------------------------------------------------------------------- */
+.bk-cta {
+  position: relative; overflow: hidden;
+  background: var(--bk-primary); color: var(--bk-on-primary);
+  padding: clamp(64px, 8vw, 118px) 0;
+}
+.bk-cta .bk-h2 { color: var(--bk-on-primary); }
+.bk-cta__lede { color: rgba(32, 29, 30, .84); }
+.bk-cta__bg { position: absolute; inset: 0; opacity: .13; }
+.bk-cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+
+.bk-footer { background: var(--bk-black); color: var(--bk-dust); padding: clamp(60px,7vw,96px) 0 0; border-top: 1px solid var(--bk-line-dark); }
+.bk-footer h4 { font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .18em; text-transform: uppercase; color: var(--bk-primary); margin: 0 0 20px; font-weight: 500; }
+.bk-footer ul { list-style: none; margin: 0; padding: 0; }
+.bk-footer li { margin-bottom: 11px; }
+.bk-footer li a { font-size: var(--bk-t-body-sm); color: rgba(241, 236, 219,.7); transition: color .3s var(--bk-ease), padding-left .3s var(--bk-ease); }
+.bk-footer li a:hover { color: var(--bk-primary); padding-left: 6px; }
+/* Always keep the logo's true 1200×364 proportions: width follows height,
+   and if the column is too narrow it scales down as a whole, never squashes. */
+.bk-footer__logo img {
+  display: block; width: 138px; height: auto; max-width: 100%;
+  aspect-ratio: 1200 / 364; object-fit: cover;
+  margin-bottom: 24px;
+}
+/* Safety net for any other placement of the logo (e.g. a widget added later
+   in Elementor): keep its true proportions whatever size it is given. */
+img[src*="bokswa-logo"] { aspect-ratio: 1200 / 364; height: auto; object-fit: cover; }
+.bk-footer__social { display: flex; gap: 9px; margin-top: 24px; }
+.bk-footer__social a {
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--bk-line-dark); color: rgba(241, 236, 219,.7);
+  transition: all .35s var(--bk-ease);
+}
+.bk-footer__social a:hover { background: var(--bk-primary); border-color: var(--bk-primary); color: var(--bk-on-primary); }
+.bk-footer__bar { margin-top: clamp(44px,5vw,70px); padding: 24px 0; border-top: 1px solid var(--bk-line-dark); }
+.bk-footer__bar p { margin: 0; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .1em; color: rgba(241, 236, 219,.44); text-transform: uppercase; }
+
+/* --------------------------------------------------------------------------
+   21. PAGE HERO (interior pages)
+   -------------------------------------------------------------------------- */
+.bk-phero { position: relative; min-height: 62vh; display: flex; align-items: flex-end; overflow: hidden; background: var(--bk-black); padding-top: var(--bk-nav-h); }
+.bk-phero__media { position: absolute; inset: 0; }
+.bk-phero__media img { width: 100%; height: 100%; object-fit: cover; }
+.bk-phero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,12,13,.8) 0%, rgba(12,12,13,.42) 45%, rgba(12,12,13,.94) 100%); }
+.bk-phero { color: var(--bk-dust); }
+.bk-phero .bk-h1 { color: var(--bk-white); }
+.bk-phero .bk-lede { color: rgba(241, 236, 219, .84); opacity: 1; }
+.bk-phero__in { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(44px,5vw,76px); padding-top: 60px; }
+.bk-crumb { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; margin: 0 0 22px; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption); letter-spacing: .14em; text-transform: uppercase; color: rgba(241, 236, 219,.5); }
+.bk-crumb a:hover { color: var(--bk-primary); }
+.bk-crumb i { color: var(--bk-primary); font-size: 9px; }
+
+/* --------------------------------------------------------------------------
+   22. SCROLL REVEALS
+   -------------------------------------------------------------------------- */
+.bk-reveal { transition: opacity .9s var(--bk-ease), transform .9s var(--bk-ease); }
+html.js .bk-reveal { opacity: 0; transform: translateY(26px); }
+html.js .bk-reveal.is-in { opacity: 1; transform: none; }
+.bk-reveal[data-d="1"] { transition-delay: .1s; }
+.bk-reveal[data-d="2"] { transition-delay: .2s; }
+.bk-reveal[data-d="3"] { transition-delay: .3s; }
+.bk-reveal[data-d="4"] { transition-delay: .4s; }
+.bk-reveal[data-d="5"] { transition-delay: .5s; }
+
+.bk-mask { position: relative; overflow: hidden; }
+.bk-mask > * { transition: clip-path 1.05s var(--bk-ease); }
+html.js .bk-mask > * { clip-path: inset(0 0 100% 0); }
+html.js .bk-mask.is-in > * { clip-path: inset(0 0 0 0); }
+
+/* --------------------------------------------------------------------------
+   23. REDUCED MOTION / LIGHTWEIGHT FALLBACK
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .bk-reveal { opacity: 1 !important; transform: none !important; }
+  .bk-mask > * { clip-path: none !important; }
+  .bk-hero__headline .bk-line > span { transform: none !important; }
+  .bk-marq__track { animation: none !important; }
+}
+html.bk-lite .bk-film__stage, html.no-js .bk-film__stage { height: auto; }
+html.bk-lite .bk-film__chapters, html.no-js .bk-film__chapters { position: static; }
+html.bk-lite .film-chapter, html.no-js .film-chapter { position: relative; opacity: 1; visibility: visible; }
+html.bk-lite .film-frame, html.no-js .film-frame {
+  position: relative; height: auto; overflow: visible;
+  opacity: 1 !important; visibility: visible !important;
+  border-bottom: 1px solid var(--bk-line-dark);
+}
+html.bk-lite .film-frame__img, html.no-js .film-frame__img { height: clamp(300px, 56vh, 520px); transform: none !important; }
+html.bk-lite .film-frame__veil, html.no-js .film-frame__veil { display: none; }
+html.bk-lite .film-caption, html.no-js .film-caption {
+  position: relative; padding: 32px var(--bk-gut) 62px;
+  opacity: 1 !important; transform: none !important;
+}
+html.bk-lite .film-title, html.no-js .film-title { max-width: 22ch; }
+html.bk-lite .bk-film__hud, html.bk-lite .bk-film__bar, html.no-js .bk-film__hud, html.no-js .bk-film__bar { display: none; }
+
+/* --------------------------------------------------------------------------
+   24. UTILITIES
+   -------------------------------------------------------------------------- */
+.bk-mt0 { margin-top: 0 !important; }
+.bk-center { text-align: center; }
+.bk-center .bk-eyebrow { justify-content: center; }
+.bk-center .bk-lede { margin-left: auto; margin-right: auto; }
+.bk-center .bk-btns { justify-content: center; }
+.bk-sticky { position: sticky; top: calc(var(--bk-nav-h) + 30px); }
+@media (max-width: 860px) { .bk-sticky { position: static; } }
+.bk-hide-mob { display: block; }
+@media (max-width: 860px) { .bk-hide-mob { display: none; } }
+
+/* ==========================================================================
+   25. REFERENCE-DERIVED COMPONENTS
+   Patterns adapted from the studio-size.com reference, rebuilt in BOKSWA's
+   own geometry (square, not rounded) and palette (one orange accent).
+   Every one follows the showpiece rule: content in markup, behaviour in JS.
+   ========================================================================== */
+
+/* --- Lenis smooth scroll (desktop only; JS adds the classes) ----------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* --- Hero rotating word ------------------------------------------------
+   The words are real markup inside [data-rotator]. Without JS only the
+   .is-active word shows, so the headline always reads as a sentence. */
+.bk-rotator { position: relative; display: inline-block; white-space: nowrap; vertical-align: top; }
+.bk-rotator__word { display: inline-block; }
+.bk-rotator__word:not(.is-active) { position: absolute; left: 0; top: 0; visibility: hidden; }
+.bk-rotator__word.is-leaving { visibility: visible; }
+.bk-rotator .ch { display: inline-block; will-change: transform; }
+
+/* --- Manifesto: statement paragraph lit word-by-word on scroll ---------
+   Sentence case on purpose — the contrast with the uppercase display
+   headings is what makes it read as a voice rather than a heading. */
+.bk-manifesto { padding: clamp(96px, 12vw, 200px) 0; }
+.bk-manifesto__text {
+  margin: 0; max-width: 21ch;
+  font-family: var(--bk-font-display); font-weight: 700;
+  font-size: var(--bk-t-heading-lg); line-height: 1.02;
+  letter-spacing: var(--bk-track-display); text-wrap: pretty;
+  color: var(--bk-white);
+}
+.bk-manifesto__text .w { opacity: .16; transition: opacity .2s linear; }
+.bk-manifesto__text .bk-or .w, .bk-manifesto__text .w.bk-or { color: var(--bk-primary); }
+.bk-manifesto__foot { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 30px; margin-top: clamp(40px, 5vw, 76px); }
+.bk-manifesto__foot p { margin: 0; max-width: 44ch; font-size: var(--bk-t-body); color: var(--bk-concrete); }
+
+/* --- Hover index: huge stacked names, preview beside -------------------
+   Each .bk-index__item pairs with the .bk-index__img whose data-for
+   matches its data-target — the same pairing contract as the explorer. */
+.bk-index__stage { position: relative; height: clamp(320px, 42vw, 560px); overflow: hidden; background: var(--bk-ink); }
+.bk-index__img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.08);
+  transition: opacity .55s var(--bk-ease), transform 1.1s var(--bk-ease);
+}
+.bk-index__img.is-active { opacity: 1; transform: scale(1); }
+.bk-index__cap {
+  position: absolute; left: 0; bottom: 0; z-index: 2; padding: 12px 18px;
+  background: var(--bk-black); color: var(--bk-dust);
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption);
+  letter-spacing: .15em; text-transform: uppercase;
+}
+.bk-index__list { display: flex; flex-direction: column; }
+.bk-index__item {
+  display: flex; align-items: baseline; gap: 18px; padding: 2px 0;
+  font-family: var(--bk-font-display); font-weight: 800; text-transform: uppercase;
+  font-size: var(--bk-t-heading); line-height: .98; letter-spacing: var(--bk-track-display);
+  color: #6F6D65;   /* resting state: dimmed but >3:1 on #191919 for large text */
+  transition: color .45s var(--bk-ease), transform .55s var(--bk-ease);
+}
+.bk-index__n {
+  font-family: var(--bk-font-mono); font-weight: 500; font-size: var(--bk-t-caption);
+  letter-spacing: .1em; color: transparent; transition: color .45s var(--bk-ease);
+  transform: translateY(-.9em); flex: none;
+}
+.bk-index__item.is-active { color: var(--bk-white); transform: translateX(clamp(10px, 2vw, 32px)); }
+.bk-index__item.is-active .bk-index__n { color: var(--bk-primary); }
+@media (max-width: 860px) {
+  .bk-index__stage { display: none; }
+  .bk-index__item { color: var(--bk-white); font-size: clamp(1.9rem, 8.5vw, 3rem); padding: 8px 0; border-bottom: 1px solid var(--bk-line-dark); }
+  .bk-index__item.is-active { transform: none; }
+  .bk-index__n { color: var(--bk-primary); transform: none; }
+}
+
+/* --- Scatter CTA: product photographs drifting around the close -------- */
+.bk-scatter { position: relative; overflow: hidden; background: var(--bk-black); color: var(--bk-dust); padding: clamp(120px, 16vw, 260px) 0; border-top: 1px solid var(--bk-line-dark); }
+.bk-scatter .bk-lede { color: rgba(241, 236, 219, .82); opacity: 1; }
+.bk-scatter__img {
+  position: absolute; left: var(--x); top: var(--y); width: var(--w); height: auto;
+  aspect-ratio: 4 / 5; object-fit: cover; z-index: 1;
+  transform: rotate(var(--r));
+  box-shadow: none; outline: 1px solid rgba(241, 236, 219, .08);
+}
+.bk-scatter__copy { position: relative; z-index: 2; text-align: center; }
+.bk-scatter__title {
+  margin: 0 auto; max-width: 13ch;
+  font-family: var(--bk-font-display); font-weight: 900; text-transform: uppercase;
+  font-size: var(--bk-t-display); line-height: .9; letter-spacing: var(--bk-track-display);
+  color: var(--bk-white);
+}
+.bk-scatter__title .bk-or { color: var(--bk-primary); }
+.bk-scatter .bk-lede { margin-left: auto; margin-right: auto; }
+.bk-scatter .bk-btns { justify-content: center; }
+@media (max-width: 860px) {
+  .bk-scatter__img { width: calc(var(--w) * .55); opacity: .5; }
+  .bk-scatter__img[data-mob="hide"] { display: none; }
+}
+
+/* --- Giant footer wordmark --------------------------------------------- */
+.bk-footer__mark {
+  display: block; margin: clamp(30px, 4vw, 60px) 0 0; overflow: hidden;
+  font-family: var(--bk-font-display); font-weight: 900; text-transform: uppercase;
+  font-size: 20vw; line-height: .8; letter-spacing: -.045em;
+  color: var(--bk-white); white-space: nowrap; user-select: none;
+}
+.bk-footer__mark span { display: inline-block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bk-manifesto__text .w { opacity: 1 !important; }
+  .bk-index__img, .bk-index__item { transition: none !important; }
+}
+
+
+/* ==========================================================================
+   26. PRELOADER — logo reveal video mode, and no-JS safety
+   The video src lives in markup; bokswa.js only plays it and listens for
+   its timeline. If it cannot play, the brick-grid build runs instead.
+   ========================================================================== */
+html.no-js .bk-preload { display: none !important; }
+.bk-preload__video { display: none; }
+.bk-preload.is-video { background: #0A0A0A; }
+.bk-preload.is-video .bk-preload__video {
+  display: block; position: absolute; left: 50%; top: 50%;
+  width: min(100vw, 177.78vh); height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  transform: translate(-50%, -50%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 48%, #000 58%, transparent 100%);
+          mask-image: radial-gradient(ellipse 72% 72% at 50% 48%, #000 58%, transparent 100%);
+}
+@media (orientation: portrait) {
+  /* the logo occupies the middle ~55% of the frame; widen so it reads on phones */
+  .bk-preload.is-video .bk-preload__video { width: 165vw; }
+}
+.bk-preload.is-video .bk-preload__grid { display: none; }
+.bk-preload.is-video .bk-preload__bar,
+.bk-preload.is-video .bk-preload__meta { position: absolute; left: 50%; transform: translateX(-50%); width: 160px; margin: 0; }
+.bk-preload.is-video .bk-preload__bar { bottom: 70px; }
+.bk-preload.is-video .bk-preload__meta { bottom: 40px; }
+.bk-preload__skip {
+  display: none; position: absolute; top: 24px; right: var(--bk-gut); z-index: 2;
+  padding: 10px 16px; border: 1px solid var(--bk-line-dark);
+  font-family: var(--bk-font-mono); font-size: var(--bk-t-caption);
+  letter-spacing: .15em; text-transform: uppercase; color: rgba(241, 236, 219, .72);
+  transition: color .3s var(--bk-ease), border-color .3s var(--bk-ease);
+}
+.bk-preload.is-video .bk-preload__skip { display: inline-flex; }
+.bk-preload__skip:hover, .bk-preload__skip:focus-visible { color: var(--bk-white); border-color: var(--bk-primary); }
+
+/* No-JS fallbacks for the remaining behaviour-driven components */
+html.no-js .explorer-panel:not([hidden]) { opacity: 1; visibility: visible; position: relative; pointer-events: auto; }
+html.no-js .explorer-item:first-child { padding-left: 18px; }
+html.no-js .bk-acc__panel { height: auto; }
+html.no-js .bk-index__img:first-of-type { opacity: 1; transform: none; }
+html.no-js .bk-index__item { color: var(--bk-white); }
+html.no-js .bk-marq__track { animation: none; }
+
+/* ==========================================================================
+   27. LEADERSHIP — General Manager section (native widgets only)
+   ========================================================================== */
+.bk-leader__portrait { position: relative; margin: 0; overflow: hidden; aspect-ratio: 4 / 5; max-height: 760px; background: var(--bk-ink); }
+.bk-leader__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+/* orange corner brackets — the brick-mark geometry framing the portrait */
+.bk-leader__portrait::before, .bk-leader__portrait::after {
+  content: ""; position: absolute; z-index: 2; width: 44px; height: 44px; pointer-events: none;
+}
+.bk-leader__portrait::before { left: 14px; top: 14px; border-left: 2px solid var(--bk-primary); border-top: 2px solid var(--bk-primary); }
+.bk-leader__portrait::after { right: 14px; bottom: 14px; border-right: 2px solid var(--bk-primary); border-bottom: 2px solid var(--bk-primary); }
+.bk-leader__id { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--bk-line-dark); }
+.bk-leader__name {
+  margin: 0; font-family: var(--bk-font-display); font-weight: 800; text-transform: uppercase;
+  font-size: var(--bk-t-subheading); line-height: 1.04; letter-spacing: var(--bk-track-head); color: var(--bk-white);
+}
+.bk-leader__role {
+  margin: 8px 0 0; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption);
+  letter-spacing: .15em; text-transform: uppercase; color: var(--bk-primary);
+}
+.bk-leader__principle { margin: 34px 0 0; padding: 4px 0 4px 24px; border-left: 2px solid var(--bk-primary); }
+.bk-leader__principle p {
+  margin: 0; font-family: var(--bk-font-display); font-weight: 700;
+  font-size: var(--bk-t-heading-sm); line-height: 1.08; letter-spacing: var(--bk-track-display); color: var(--bk-white);
+}
+.bk-leader__principle cite {
+  display: block; margin-top: 12px; font-style: normal; font-family: var(--bk-font-mono);
+  font-size: var(--bk-t-caption); letter-spacing: .15em; text-transform: uppercase; color: var(--bk-concrete);
+}
+@media (max-width: 860px) {
+  .bk-leader__portrait { margin-bottom: 40px; max-height: 560px; }
+}
+
+/* ==========================================================================
+   28. IMMERSIVE IMAGE TRANSITIONS
+   Slower, softer easing everywhere images move. Every rule is gated behind
+   html.js so nothing is ever hidden when JavaScript is unavailable, and the
+   reduced-motion block above collapses all of it to instant.
+   ========================================================================== */
+:root { --bk-ease-out: cubic-bezier(.16, 1, .3, 1); }
+
+.bk-reveal { transition: opacity 1s var(--bk-ease-out), transform 1.2s var(--bk-ease-out); }
+html.js .bk-reveal { transform: translateY(34px); }
+
+/* Masked photographs: the clip opens upward while the photo settles from a
+   tight crop to its resting frame — a slow camera pull-back. It rests at
+   1.06 so the scroll parallax (bokswa.js) never exposes an edge. */
+html.js .bk-mask > img {
+  scale: 1.2; will-change: scale, clip-path;
+  transition: clip-path 1.3s var(--bk-ease-out), scale 2s var(--bk-ease-out);
+}
+html.js .bk-mask.is-in > img { scale: 1.06; }
+
+/* Gallery tiles rise in, staggered across each row (--bk-d set by JS), and
+   each photo eases out of a close crop as its tile arrives. */
+html.js .bk-gal__item {
+  opacity: 0; translate: 0 40px;
+  transition: opacity 1s var(--bk-ease-out), translate 1.2s var(--bk-ease-out);
+  transition-delay: var(--bk-d, 0s);
+}
+html.js .bk-gal__item.is-in { opacity: 1; translate: 0 0; }
+html.js .bk-gal__item img {
+  scale: 1.14;
+  transition: scale 1.8s var(--bk-ease-out) var(--bk-d, 0s), transform .9s var(--bk-ease-out);
+}
+html.js .bk-gal__item.is-in img { scale: 1; }
+
+/* Card photos settle as their card reveals; hover zoom eased more gently. */
+html.js .bk-card.bk-reveal .bk-card__media img {
+  scale: 1.14;
+  transition: scale 1.8s var(--bk-ease-out), transform .9s var(--bk-ease-out);
+}
+html.js .bk-card.bk-reveal.is-in .bk-card__media img { scale: 1; }
+
+/* ==========================================================================
+   29. FOOTER LINK HOVER — colour lift plus an orange underline that draws in
+   ========================================================================== */
+.bk-footer li a {
+  color: rgba(241, 236, 219, .72); padding-bottom: 2px;
+  background: linear-gradient(var(--bk-primary), var(--bk-primary)) 0 100% / 0 1px no-repeat;
+  transition: color .35s var(--bk-ease), background-size .5s var(--bk-ease-out);
+}
+.bk-footer li a:hover, .bk-footer li a:focus-visible {
+  color: var(--bk-white); padding-left: 0; background-size: 100% 1px;
+}
+.bk-footer li a:focus { outline: none; }
+.bk-footer li a:focus-visible { outline: 2px solid var(--bk-primary); outline-offset: 3px; border-radius: 4px; }
+.bk-footer li a i { display: inline-block; transition: transform .4s var(--bk-ease-out); }
+.bk-footer li a:hover i { transform: scale(1.15); }
+/* One-tap phone/email links inside running text */
+.bk-inline-link {
+  color: var(--bk-primary); font-weight: 600; white-space: nowrap;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  padding-bottom: 1px; transition: color .3s var(--bk-ease), background-size .45s var(--bk-ease-out);
+}
+.bk-inline-link:hover, .bk-inline-link:focus-visible { color: var(--bk-white); background-size: 0 1px; background-position: 100% 100%; }
+
+/* ==========================================================================
+   30. HEADLINE SYSTEM + CONSISTENT GRID FRAMES
+   ========================================================================== */
+:root { --bk-head-gap: clamp(40px, 4.5vw, 64px); }
+
+/* Headlines: heaviest weight, tighter tracking and leading so they read as
+   one solid block — the "carved" feel — rather than spaced-out lines. */
+.bk-h1, .bk-h2 { font-weight: 900; letter-spacing: -.022em; line-height: .96; }
+.bk-h3 { letter-spacing: -.012em; }
+
+/* One gap between every section heading block and the content under it,
+   replacing thirteen one-off values that ranged from 34px to 60px. */
+.bk-head-gap { margin-bottom: var(--bk-head-gap); }
+.bk-eyebrow + .bk-h1, .bk-eyebrow + .bk-h2, .bk-eyebrow + .bk-h3 { margin-top: 0; }
+
+/* Card photos use a proportional 4:3 frame (not a fixed pixel height), so
+   every tile in a grid is the same shape at every screen width. */
+.bk-card__media, .bk-card__media--square { height: auto; aspect-ratio: 4 / 3; }
+.bk-card__media img { display: block; object-fit: cover; object-position: center; }
+.bk-gal__item { min-width: 0; }
+
+/* ==========================================================================
+   31. LOCATION MAP — live Google map pinned to the yard's exact coordinates
+   ========================================================================== */
+.bk-map { position: relative; overflow: hidden; border-radius: 12px; background: var(--bk-ink); border: 1px solid var(--bk-line-dark); }
+.bk-map.bk-figure--tall { height: clamp(360px, 60vh, 640px); }
+.bk-map__frame {
+  display: block; width: 100%; height: 100%; border: 0;
+  /* slightly desaturated so it sits in the dark palette; the red pin still reads */
+  filter: grayscale(.35) contrast(1.05) brightness(.92);
+  transition: filter .5s var(--bk-ease);
+}
+.bk-map:hover .bk-map__frame { filter: none; }
+.bk-map__cap {
+  position: absolute; left: 12px; bottom: 12px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 11px 16px; border-radius: 10px;
+  background: rgba(14, 16, 15, .92); color: var(--bk-white);
+  font-family: var(--bk-font-display); font-weight: 700; font-size: 15px; letter-spacing: .01em;
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .7);
+  transition: background .35s var(--bk-ease), color .35s var(--bk-ease), transform .35s var(--bk-ease);
+}
+.bk-map__cap i { color: var(--bk-primary); transition: color .35s var(--bk-ease); }
+.bk-map__cap .bk-btn__ar { transition: transform .4s var(--bk-ease); }
+.bk-map__cap:hover { background: var(--bk-primary); color: var(--bk-on-primary); transform: translateY(-2px); }
+.bk-map__cap:hover i { color: var(--bk-on-primary); }
+.bk-map__cap:hover .bk-btn__ar { transform: translateX(4px); }
