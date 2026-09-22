@@ -13,6 +13,18 @@ const NAV = [
   ["contact.html", "Contact"]
 ];
 
+/* ---------------------------------------------------------------------------
+   dims — the sizes we actually cast, printed as a "Dimensions" strip directly
+   under each product description (and as a one-line summary on the products
+   page and the product cards).
+
+   Format:  ["Variant name", "L x W x H mm"]        e.g. ["6-inch", "400 x 150 x 200 mm"]
+            ["Thickness",    "60 mm"]               single-figure entries are fine
+
+   An empty array renders nothing at all — no placeholder, no "to confirm".
+   Fill these in from the yard's own figures before the site goes live.
+   --------------------------------------------------------------------------- */
+
 const PRODUCTS = [
   {
     slug: "hollow-blocks",
@@ -23,7 +35,7 @@ const PRODUCTS = [
     meta: "BOKSWA manufactures high-load bearing hollow concrete blocks for structural walling and partitions. Cast, cured and dispatched from our yard at Joggo, Bukerere Road, Kampala.",
     tagline: "High-load bearing blocks for resilient walling and partitions",
     hero: "products/hollow-block",
-    heroAlt: "BOKSWA three-core hollow concrete block on a pallet in the production yard",
+    heroAlt: "BOKSWA hollow concrete blocks laid out across the production yard with a finished unit in the foreground",
     lede: "The workhorse of Ugandan structural walling. Cores cut dead weight without giving up load capacity, and they leave a clear path for reinforcement and services once the wall is up.",
     body: [
       "A hollow block does two jobs at once. It carries load through its webs and shells, and its voids give you somewhere to run reinforcement, conduit and plumbing without chasing a finished wall to pieces afterwards.",
@@ -37,6 +49,8 @@ const PRODUCTS = [
       ["Nominal dimensions", "TBD"],
       ["Units per pallet", "TBD"]
     ],
+    dims: [],
+    dimsNote: "",
     uses: [
       ["fa-building", "Structural walling", "Load-bearing walls for residential and commercial shells."],
       ["fa-th-large", "Partitions", "Internal division walls where weight and speed both matter."],
@@ -44,7 +58,7 @@ const PRODUCTS = [
       ["fa-warehouse", "Commercial shells", "Warehouse and workshop envelopes at volume."]
     ],
     gallery: [
-      ["products/hollow-block", "BOKSWA three-core hollow concrete block"],
+      ["products/hollow-block", "BOKSWA hollow concrete blocks curing across the production yard"],
       ["projects/wall-building", "Block wall under construction using BOKSWA hollow blocks"],
       ["projects/block-wall-a", "Stacked BOKSWA hollow blocks delivered to a construction site"],
       ["yard/curing-field", "Freshly cast BOKSWA blocks curing in the open yard"]
@@ -79,6 +93,8 @@ const PRODUCTS = [
       ["Nominal dimensions", "TBD"],
       ["Units per pallet", "TBD"]
     ],
+    dims: [],
+    dimsNote: "",
     uses: [
       ["fa-layer-group", "Foundation courses", "Below-ground work that has to resist load and moisture."],
       ["fa-mountain", "Retaining courses", "Sections holding back earth or fill."],
@@ -105,8 +121,8 @@ const PRODUCTS = [
     title: "Concrete Pavers & Louvers in Kampala, Uganda",
     meta: "Interlocking concrete pavers in bone, hexagon, trihex, rhombus and cabbage profiles, plus ventilation louver blocks. Manufactured by BOKSWA in Kampala, Uganda.",
     tagline: "Interlocking surfaces in multiple profiles, plus ventilation louvers",
-    hero: "products/paver-hex-red",
-    heroAlt: "Red and grey hexagonal BOKSWA concrete pavers",
+    hero: "products/paver-yard",
+    heroAlt: "Thousands of BOKSWA concrete pavers laid out to cure across the production yard",
     lede: "Interlock spreads vehicle load across the surface instead of driving it through a single slab — which is why a paved driveway outlasts a poured one under traffic.",
     body: [
       "A concrete slab under vehicle load cracks at its weakest line and then keeps cracking. An interlocking surface moves instead: each unit transfers load to its neighbours through the joint, the whole field flexes slightly, and nothing has to fail for the surface to cope.",
@@ -121,6 +137,8 @@ const PRODUCTS = [
       ["Units per square metre", "TBD"],
       ["Louver units", "Ventilation blocks"]
     ],
+    dims: [],
+    dimsNote: "",
     uses: [
       ["fa-car", "Driveways", "Vehicle-rated surfaces that take load without cracking."],
       ["fa-home", "Compounds", "Hard standing that drains and stays level."],
@@ -138,6 +156,8 @@ const PRODUCTS = [
       ["products/louver", "Louver block"]
     ],
     gallery: [
+      ["products/paver-yard", "BOKSWA concrete pavers curing in rows across the production yard"],
+      ["products/paver-stack", "BOKSWA concrete pavers stacked and ready for dispatch"],
       ["products/paver-bone-ground", "BOKSWA bone-profile concrete paver on the ground"],
       ["texture/paver-walk-a", "Field of BOKSWA interlocking pavers stacked in the yard"],
       ["products/louver-stack", "Stacked BOKSWA concrete louver units"],
@@ -173,6 +193,8 @@ const PRODUCTS = [
       ["Unit weight", "TBD"],
       ["Profiles", "TBD"]
     ],
+    dims: [],
+    dimsNote: "",
     uses: [
       ["fa-road", "Roadsides", "Carriageway edges and verge restraint."],
       ["fa-shoe-prints", "Walkways", "Clean edges to paths and pedestrian routes."],
@@ -214,6 +236,8 @@ const PRODUCTS = [
       ["Span capability", "TBD"],
       ["Unit weight", "TBD"]
     ],
+    dims: [],
+    dimsNote: "",
     uses: [
       ["fa-layer-group", "Floor slabs", "Suspended floors in residential and commercial builds."],
       ["fa-th", "Ceiling frameworks", "A flat, ready soffit for finishing below."],
@@ -258,6 +282,8 @@ const PRODUCTS = [
       ["Reinforcement", "TBD"],
       ["Unit weight", "TBD"]
     ],
+    dims: [],
+    dimsNote: "",
     uses: [
       ["fa-shield-alt", "Security fencing", "Posts for chain-link and mesh perimeters."],
       ["fa-home", "Boundary walls", "Property demarcation that stays where you put it."],

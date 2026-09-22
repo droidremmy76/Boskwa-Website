@@ -659,6 +659,35 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .explorer-panel__specs span { display: block; margin-top: 4px; font-family: var(--bk-font-display); font-weight: 700; color: var(--bk-white); font-size: 1rem; }
 .is-tbd { color: var(--bk-primary) !important; font-family: var(--bk-font-mono) !important; font-size: var(--bk-t-caption) !important; font-weight: 500 !important; }
 
+/* Dimensions strip — sits directly under a product description.
+   One cell per size we cast. Sizes read in the orange so they scan first. */
+.bk-dims {
+  display: flex; flex-wrap: wrap; gap: 1px; margin: 16px 0 0; padding: 0; list-style: none;
+  background: var(--bk-line-dark); border: 1px solid var(--bk-line-dark);
+}
+.bk-dims li { flex: 1 1 200px; padding: 16px 18px; background: var(--bk-ink); }
+.bk-dims b {
+  display: block; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption);
+  letter-spacing: .14em; text-transform: uppercase; color: rgba(241, 236, 219, .45); font-weight: 500;
+}
+.bk-dims span {
+  display: block; margin-top: 6px; font-family: var(--bk-font-display); font-weight: 700;
+  color: var(--bk-primary); font-size: 1.05rem;
+}
+.bk-light .bk-dims li, .bk-white .bk-dims li { background: var(--bk-white); }
+.bk-light .bk-dims b, .bk-white .bk-dims b { color: rgba(14, 16, 15, .5); }
+@media (max-width: 600px) { .bk-dims li { flex: 1 1 100%; } }
+
+/* Inline dimensions line — compact form for cards and explorer panels. */
+.bk-dimline {
+  margin: 14px 0 0; font-family: var(--bk-font-mono); font-size: var(--bk-t-caption);
+  letter-spacing: .06em; color: rgba(241, 236, 219, .55);
+}
+.bk-dimline b { color: rgba(241, 236, 219, .45); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.bk-dimline span { color: var(--bk-primary); }
+.bk-light .bk-dimline, .bk-white .bk-dimline { color: rgba(14, 16, 15, .6); }
+.bk-light .bk-dimline b, .bk-white .bk-dimline b { color: rgba(14, 16, 15, .5); }
+
 /* --------------------------------------------------------------------------
    15. CARDS / ICON BOXES  →  native Elementor widgets
    -------------------------------------------------------------------------- */

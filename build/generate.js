@@ -26,6 +26,18 @@ const img = (p, alt, { sizes = "100vw", lazy = true, cls = "" } = {}) =>
   `srcset="assets/img/${p}-800.jpg 800w, assets/img/${p}-1200.jpg 1200w, assets/img/${p}-1800.jpg 1800w" ` +
   `sizes="${sizes}" alt="${alt}"${lazy ? ' loading="lazy"' : ""}>`;
 
+/* Dimensions we cast, printed under the product description. Renders nothing
+   until real figures reach data.js — we do not publish a size we cannot stand behind. */
+const dimsBlock = (p) => !p.dims || !p.dims.length ? "" : `        <p class="bk-eyebrow bk-reveal" data-d="4" style="margin-top:38px">Dimensions</p>
+        <ul class="bk-dims bk-reveal" data-d="4">
+${p.dims.map(([name, size]) => `          <li><b>${name}</b><span>${size}</span></li>`).join("\n")}
+        </ul>${p.dimsNote ? `
+        <p class="bk-body bk-reveal" data-d="4" style="font-size:var(--bk-t-caption);margin-top:14px">${linkify(p.dimsNote)}</p>` : ""}`;
+
+/* The same sizes as one compact line, for cards and explorer panels. */
+const dimsLine = (p) => !p.dims || !p.dims.length ? "" :
+  `<p class="bk-dimline"><b>Sizes</b> <span>${p.dims.map(([, size]) => size).join(" &nbsp;/&nbsp; ")}</span></p>`;
+
 const head = (o) => `<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -228,7 +240,8 @@ function productPage(p) {
         <p class="bk-eyebrow bk-reveal">Overview</p>
         <h2 class="bk-h2 bk-reveal" data-d="1">${p.lede}</h2>
 ${p.body.map((b, i) => `        <p class="bk-body bk-reveal" data-d="${i + 2}">${linkify(b)}</p>`).join("\n")}
-        <div class="bk-btns bk-reveal" data-d="4">
+${dimsBlock(p)}
+        <div class="bk-btns bk-reveal" data-d="5">
           <a class="bk-btn bk-btn--primary" href="contact.html?product=${encodeURIComponent(p.quoteName)}#quote">Get a price for ${p.name.toLowerCase()} <span class="bk-btn__ar">&rarr;</span></a>
           <a class="bk-btn bk-btn--wa" href="https://wa.me/${WA}" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Ask on WhatsApp</a>
         </div>
@@ -314,6 +327,7 @@ ${others.map((o, i) => `      <div class="bk-col bk-col--3 bk-col--pad">
           <div class="bk-card__body">
             <h3 class="bk-h3">${o.name}</h3>
             <p>${o.tagline}</p>
+            ${dimsLine(o)}
             <a class="bk-link" href="product-${o.slug}.html">View product <span class="bk-btn__ar">&rarr;</span></a>
           </div>
         </div>
@@ -358,6 +372,7 @@ ${PRODUCTS.map((p, i) => `            <div class="explorer-panel" id="p-${p.slug
               <div class="explorer-panel__body">
                 <h2 class="bk-h3" data-panel-in>${p.tagline}</h2>
                 <p class="bk-body" data-panel-in>${p.lede}</p>
+                ${dimsLine(p) ? `<div data-panel-in>${dimsLine(p)}</div>` : ""}
                 <ul class="explorer-panel__specs" data-panel-in>
 ${p.specs.slice(0, 4).map(([k, v]) => `                  <li><b>${k}</b><span${v === "TBD" ? ' class="is-tbd"' : ""}>${v === "TBD" ? "To confirm" : v}</span></li>`).join("\n")}
                 </ul>
