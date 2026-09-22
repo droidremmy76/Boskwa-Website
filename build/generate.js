@@ -21,10 +21,16 @@ const linkify = (s) => s
   .replace(/039 3002926/g, () => `<a class="bk-inline-link" href="tel:${TEL2}">039 3002926</a>`)
   .replace(/info@bokswa\.co\.ug/g, () => `<a class="bk-inline-link" href="mailto:${EMAIL}">info@bokswa.co.ug</a>`);
 
-const img = (p, alt, { sizes = "100vw", lazy = true, cls = "" } = {}) =>
-  `<img${cls ? ` class="${cls}"` : ""} src="assets/img/${p}-1200.jpg" ` +
-  `srcset="assets/img/${p}-800.jpg 800w, assets/img/${p}-1200.jpg 1200w, assets/img/${p}-1800.jpg 1800w" ` +
-  `sizes="${sizes}" alt="${alt}"${lazy ? ' loading="lazy"' : ""}>`;
+/* `max` is the largest derivative that actually exists on disk for this image.
+   Client-supplied photos often arrive too small to justify a 1200 or 1800 file,
+   and advertising a width we never wrote makes the browser fetch a 404. */
+const img = (p, alt, { sizes = "100vw", lazy = true, cls = "", max = 1800 } = {}) => {
+  const widths = [800, 1200, 1800].filter(w => w <= max);
+  const fallback = widths.includes(1200) ? 1200 : widths[widths.length - 1];
+  return `<img${cls ? ` class="${cls}"` : ""} src="assets/img/${p}-${fallback}.jpg" ` +
+    `srcset="${widths.map(w => `assets/img/${p}-${w}.jpg ${w}w`).join(", ")}" ` +
+    `sizes="${sizes}" alt="${alt}"${lazy ? ' loading="lazy"' : ""}>`;
+};
 
 /* Dimensions we cast, printed under the product description. Renders nothing
    until real figures reach data.js — we do not publish a size we cannot stand behind. */
@@ -106,7 +112,7 @@ ${NAV.map(([h, l], i) => `    <li><a href="${h}">${l}</a></li>`).join("\n")}
 const phero = (o) => `
 <section class="bk-phero" id="top">
   <div class="bk-phero__media">
-    ${img(o.image, o.imageAlt, { sizes: "100vw", lazy: false })}
+    ${img(o.image, o.imageAlt, { sizes: "100vw", lazy: false, max: o.imageMax || 1800 })}
   </div>
   <div class="bk-phero__in">
     <div class="bk-wrap bk-wrap--wide">
@@ -534,27 +540,41 @@ ${steps.map(([n, t, d, src, alt], i) => `
 
 /* ---------- projects --------------------------------------------------- */
 function projectsPage() {
+  /* Ordered so the gallery opens on finished work and ends at the yard —
+     the page is called "where the material ends up", so it should not lead
+     with pallets. `max` marks photos that only exist at 800px. */
   const items = [
-    ["projects/wall-building", "Block wall under construction using BOKSWA hollow blocks", "Walling in progress", "walling site"],
-    ["projects/building-complete", "Completed building constructed with BOKSWA concrete blocks", "Completed structure", "walling"],
-    ["projects/blocks-site", "BOKSWA blocks stacked at an active construction site", "Delivered to site", "site"],
-    ["projects/block-wall-a", "Stacked BOKSWA hollow blocks beside a wall under construction", "Bulk supply on site", "walling site"],
-    ["projects/block-wall-b", "BOKSWA blocks stacked in front of a building under construction", "Staged for laying", "walling site"],
-    ["projects/wall-site", "BOKSWA blocks at a residential construction site", "Residential build", "site"],
-    ["projects/blocks-yard", "BOKSWA blocks stacked in the production yard", "Ready for dispatch", "yard"],
-    ["yard/curing-field", "Freshly cast BOKSWA blocks curing in the open yard", "Curing field", "yard"],
-    ["yard/truck-front", "Branded BOKSWA Investments delivery truck", "Dispatch fleet", "yard"],
-    ["products/kerb-yard", "Pallets of BOKSWA kerb stones ready for dispatch", "Kerb stock", "yard"],
-    ["texture/paver-walk-a", "Field of BOKSWA interlocking pavers stacked in the yard", "Paver stock", "yard"],
-    ["projects/block-stack-b", "Stacked BOKSWA hollow blocks at a construction site", "On site", "site"]
+    ["projects/apartments-build", "Apartment block under construction, block walling behind bamboo scaffolding", "Apartments under construction", "walling site", 1200],
+    ["projects/roof-trusses", "Roof trusses being fixed over completed block walling", "Trusses over block walling", "walling site", 1200],
+    ["projects/villa-paved-drive", "Completed two-storey house with a paved approach and driveway", "Completed villa and driveway", "paving walling", 800],
+    ["projects/home-paved-compound", "Completed home with a fully paved compound", "Paved compound", "paving walling", 800],
+    ["projects/paving-hex-drive", "Hexagonal pavers laid in red and grey along a compound driveway", "Hexagon pavers, red and grey", "paving", 800],
+    ["projects/paver-laying", "Pavers being laid course by course on a levelled sand bed", "Pavers going down", "paving site", 800],
+    ["projects/paver-bone-laid", "Bone-profile pavers laid in alternating grey and white courses", "Bone pavers laid", "paving", 800],
+    ["projects/compound-pattern", "Paved compound laid in a red and grey panel pattern", "Patterned compound", "paving", 800],
+    ["projects/bungalow-paved", "Completed bungalow with a paved frontage", "Paved frontage", "paving walling", 800],
+    ["projects/terrace-paved", "Terrace of completed homes with a paved forecourt", "Paved forecourt", "paving walling", 800],
+    ["projects/garden-path", "Paved path running through a landscaped garden", "Paved garden path", "paving", 800],
+    ["projects/house-paved-drive", "Paved driveway leading to a finished house", "Driveway to the door", "paving", 800],
+    ["projects/boundary-wall", "Hollow-block boundary wall with steel railing above", "Block boundary wall", "walling", 800],
+    ["projects/perimeter-wall", "Rendered perimeter wall topped with an electric fence", "Perimeter wall", "walling", 800],
+    ["projects/wall-building", "Block wall under construction using BOKSWA hollow blocks", "Walling in progress", "walling site", 1800],
+    ["projects/blocks-site", "BOKSWA blocks stacked at an active construction site", "Delivered to site", "site", 1800],
+    ["projects/block-wall-a", "Stacked BOKSWA hollow blocks beside a wall under construction", "Bulk supply on site", "walling site", 1800],
+    ["projects/wall-site", "BOKSWA blocks at a residential construction site", "Residential build", "site", 1800],
+    ["yard/curing-field", "Freshly cast BOKSWA blocks curing in the open yard", "Curing field", "yard", 1800],
+    ["yard/truck-front", "Branded BOKSWA Investments delivery truck", "Dispatch fleet", "yard", 1800],
+    ["products/kerb-yard", "Pallets of BOKSWA kerb stones ready for dispatch", "Kerb stock", "yard", 1800],
+    ["texture/paver-walk-a", "Field of BOKSWA interlocking pavers stacked in the yard", "Paver stock", "yard", 1800]
   ];
   return head({
     title: "Projects — Built With BOKSWA | Kampala, Uganda",
     meta: "Walls, compounds, slabs and perimeters built with BOKSWA concrete blocks, pavers and kerb stones across Kampala, Mukono and central Uganda.",
-    file: "projects.html", ogImage: "projects/building-complete"
+    file: "projects.html", ogImage: "projects/apartments-build"
   }) + header("projects.html") + phero({
-    image: "projects/building-complete",
-    imageAlt: "Completed building constructed with BOKSWA concrete blocks",
+    image: "projects/apartments-build",
+    imageAlt: "Apartment block under construction, block walling behind bamboo scaffolding",
+    imageMax: 1200,
     crumb: "Projects", eyebrow: "Built with BOKSWA", h1: "Where the<br>material ends up",
     lede: "A product photograph tells you what something looks like. This tells you what it becomes."
   }) + `
@@ -564,11 +584,12 @@ function projectsPage() {
     <div class="bk-filter bk-reveal">
       <button class="is-active" data-filter="all">All</button>
       <button data-filter="walling">Walling</button>
+      <button data-filter="paving">Paving</button>
       <button data-filter="site">On site</button>
       <button data-filter="yard">Production &amp; dispatch</button>
     </div>
     <div class="bk-gal">
-${items.map(([src, alt, cap, cat]) => `      <div class="bk-gal__item" data-cat="${cat}"><figure class="bk-gal__fig">${img(src, alt, { sizes: "(max-width:600px) 100vw, (max-width:980px) 50vw, 33vw" })}<figcaption>${cap}</figcaption></figure></div>`).join("\n")}
+${items.map(([src, alt, cap, cat, max]) => `      <div class="bk-gal__item" data-cat="${cat}"><figure class="bk-gal__fig">${img(src, alt, { sizes: "(max-width:600px) 100vw, (max-width:980px) 50vw, 33vw", max })}<figcaption>${cap}</figcaption></figure></div>`).join("\n")}
     </div>
   </div>
 </section>
@@ -593,7 +614,7 @@ ${items.map(([src, alt, cap, cat]) => `      <div class="bk-gal__item" data-cat=
         </div>
       </div>
       <div class="bk-col bk-col--2 bk-col--pl">
-        <div class="bk-figure bk-figure--tall bk-mask">${img("projects/wall-building", "Block wall under construction using BOKSWA hollow blocks", { sizes: "(max-width:860px) 100vw, 50vw" })}</div>
+        <div class="bk-figure bk-figure--tall bk-mask">${img("projects/roof-trusses", "Roof trusses being fixed over completed block walling", { sizes: "(max-width:860px) 100vw, 50vw", max: 1200 })}</div>
       </div>
     </div>
   </div>
