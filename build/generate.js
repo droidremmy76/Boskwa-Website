@@ -347,13 +347,13 @@ ${others.map((o, i) => `      <div class="bk-col bk-col--3 bk-col--pad">
 /* ---------- products index -------------------------------------------- */
 function productsPage() {
   return head({
-    title: "Our Products — Blocks, Pavers, Kerbs, Maxpans & Fence Poles | BOKSWA",
+    title: "Our Products — Blocks, Pavers, Louvers, Kerbs, Maxpans & Fence Poles | BOKSWA",
     meta: "The full BOKSWA range: hollow and solid concrete blocks, interlocking pavers and louvers, kerb stones, maxpans and reinforced fence poles. Manufactured in Kampala, Uganda.",
     file: "products.html", ogImage: "products/hollow-block"
   }) + header("products.html") + phero({
     image: "yard/blocks-field",
     imageAlt: "Rows of BOKSWA concrete blocks laid out across the production yard",
-    crumb: "Products", eyebrow: "The range", h1: "Six lines.<br>One standard.",
+    crumb: "Products", eyebrow: "The range", h1: "Seven lines.<br>One standard.",
     lede: "Every product below is cast at our own yard at Joggo, from the same batching discipline and the same curing process. Select a line to see what it is for and how it behaves."
   }) + `
 
@@ -606,7 +606,7 @@ ${items.map(([src, alt, cap, cat, max]) => `      <div class="bk-gal__item" data
           are stacked and dispatched from Joggo, 3km off the Seeta&ndash;Jinja Highway.
         </p>
         <div class="bk-row" style="margin-top:30px">
-          <div class="bk-col bk-col--2"><div class="bk-stat bk-reveal" data-d="3"><b>Six</b><span>Product lines supplied</span></div></div>
+          <div class="bk-col bk-col--2"><div class="bk-stat bk-reveal" data-d="3"><b>Seven</b><span>Product lines supplied</span></div></div>
           <div class="bk-col bk-col--2"><div class="bk-stat bk-reveal" data-d="4"><b>Bulk</b><span>Quantities to order</span></div></div>
         </div>
         <div class="bk-btns bk-reveal" data-d="5">

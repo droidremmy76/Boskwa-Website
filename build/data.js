@@ -114,20 +114,19 @@ const PRODUCTS = [
     ]
   },
   {
-    slug: "pavers-louvers",
+    slug: "pavers",
     n: "03",
-    name: "Pavers & Louvers",
-    quoteName: "Pavers & Louvers",
-    title: "Concrete Pavers & Louvers in Kampala, Uganda",
-    meta: "Interlocking concrete pavers in bone, hexagon, trihex, rhombus and cabbage profiles, plus ventilation louver blocks. Manufactured by BOKSWA in Kampala, Uganda.",
-    tagline: "Interlocking surfaces in multiple profiles, plus ventilation louvers",
+    name: "Pavers",
+    quoteName: "Pavers",
+    title: "Concrete Pavers in Kampala, Uganda",
+    meta: "Interlocking concrete pavers in bone, hexagon, trihex, rhombus and cabbage profiles, in grey and red. Manufactured by BOKSWA in Kampala, Uganda.",
+    tagline: "Interlocking surfaces in multiple profiles",
     hero: "products/paver-yard",
     heroAlt: "Thousands of BOKSWA concrete pavers laid out to cure across the production yard",
-    lede: "Interlock spreads vehicle load across the surface instead of driving it through a single slab — which is why a paved driveway outlasts a poured one under traffic.",
+    lede: "Interlock spreads vehicle load across the surface instead of driving it through a single slab \u2014 which is why a paved driveway outlasts a poured one under traffic.",
     body: [
       "A concrete slab under vehicle load cracks at its weakest line and then keeps cracking. An interlocking surface moves instead: each unit transfers load to its neighbours through the joint, the whole field flexes slightly, and nothing has to fail for the surface to cope.",
-      "The practical benefit arrives later. When a service trench has to go through, you lift the units, dig, backfill and relay the same pavers. With a slab you break it out and pour again, and the repair is visible for the rest of the building's life.",
-      "Louver blocks belong to the same family — cast ventilation units that let air and light move through a wall while keeping rain and direct sight out. They do a job in Ugandan buildings that a window cannot do as cheaply."
+      "The practical benefit arrives later. When a service trench has to go through, you lift the units, dig, backfill and relay the same pavers. With a slab you break it out and pour again, and the repair is visible for the rest of the building's life."
     ],
     specs: [
       ["Application", "Driveways, compounds, walkways"],
@@ -135,7 +134,7 @@ const PRODUCTS = [
       ["Colours", "Grey and red"],
       ["Thickness", "TBD"],
       ["Units per square metre", "TBD"],
-      ["Louver units", "Ventilation blocks"]
+      ["Unit weight", "TBD"]
     ],
     dims: [],
     dimsNote: "",
@@ -143,7 +142,7 @@ const PRODUCTS = [
       ["fa-car", "Driveways", "Vehicle-rated surfaces that take load without cracking."],
       ["fa-home", "Compounds", "Hard standing that drains and stays level."],
       ["fa-walking", "Walkways", "Paths and edging around buildings and gardens."],
-      ["fa-wind", "Louvers", "Cast ventilation units for walls and screens."]
+      ["fa-parking", "Parking areas", "Bays and forecourts that survive daily turning loads."]
     ],
     profiles: [
       ["products/paver-cabbage", "Cabbage"],
@@ -152,28 +151,74 @@ const PRODUCTS = [
       ["products/paver-bone", "Bone"],
       ["products/paver-rhombus", "Rhombus"],
       ["products/paver-hex-red", "Hexagon, red"],
-      ["products/paver-hex-trio", "Hexagon, laid"],
-      ["products/louver", "Louver block"]
+      ["products/paver-hex-trio", "Hexagon, laid"]
     ],
     gallery: [
       ["products/paver-yard", "BOKSWA concrete pavers curing in rows across the production yard"],
       ["products/paver-stack", "BOKSWA concrete pavers stacked and ready for dispatch"],
       ["products/paver-bone-ground", "BOKSWA bone-profile concrete paver on the ground"],
       ["texture/paver-walk-a", "Field of BOKSWA interlocking pavers stacked in the yard"],
-      ["products/louver-units", "Stacked BOKSWA concrete louver blocks"],
+      ["products/louver-stack", "The BOKSWA paver sample board, showing the profiles side by side"],
       ["texture/paver-walk-c", "Close view of BOKSWA pavers stacked for dispatch"],
-      ["products/louver-stack", "The BOKSWA paver sample board, showing the profiles side by side"]
+      ["projects/paving-hex-drive", "Hexagonal BOKSWA pavers laid in red and grey along a compound driveway", 800],
+      ["projects/paver-laying", "BOKSWA pavers being laid course by course on a levelled sand bed", 800],
+      ["projects/villa-paved-drive", "Completed house with a paved BOKSWA approach and driveway", 800]
     ],
     faq: [
-      ["Which profile should I choose?", "Structurally the common profiles perform similarly — the choice is mostly appearance and laying speed. Bone and cabbage lay fast in running bond; hexagon reads more decorative. Come to the yard and look at them laid before you decide."],
+      ["Which profile should I choose?", "Structurally the common profiles perform similarly \u2014 the choice is mostly appearance and laying speed. Bone and cabbage lay fast in running bond; hexagon reads more decorative. Come to the yard and look at them laid before you decide."],
       ["Do you supply the red colour in every profile?", "Colour availability varies by profile and production run. Ask for current stock when you request your quote rather than assuming, and we will tell you what is on the ground."],
       ["How many pavers per square metre?", "It depends on the profile and thickness you choose. Give us your area in square metres and the profile you want, and we will convert it to a unit count for the quote."],
       ["Can pavers take vehicle traffic?", "That is what interlock is for. Tell us whether the surface takes cars, light commercial or heavy vehicles, because that drives the thickness and the bedding detail you should be building to."]
     ]
   },
   {
-    slug: "kerb-stones",
+    slug: "louvers",
     n: "04",
+    name: "Louvers",
+    quoteName: "Louvers",
+    title: "Concrete Louver Blocks in Kampala, Uganda",
+    meta: "Cast concrete louver blocks for ventilation in walls, screens and gables \u2014 air and light in, rain and direct sight out. Manufactured by BOKSWA in Kampala, Uganda.",
+    tagline: "Cast ventilation that keeps the rain and the view out",
+    hero: "products/louver",
+    heroAlt: "A BOKSWA concrete louver block resting on stacked units in the production yard",
+    lede: "A wall that has to breathe without opening. The angled blade lets air and daylight through while shedding rain and blocking the line of sight straight in.",
+    body: [
+      "Ugandan buildings need ventilation in places a window cannot sensibly go \u2014 store rooms, kitchens, stairwells, gables, toilet blocks, boundary screens. A louver block does that job as part of the walling itself. It lays in the same course as everything around it, and once the wall is up the ventilation is simply there, with no frame, no glazing and nothing to maintain.",
+      "The geometry is what earns its keep. The blade is cast at an angle so that air moves through freely while driven rain runs off the outer face instead of tracking inward, and so that nobody standing outside gets a straight view of what is behind the wall. That is security and privacy delivered by the shape of the unit rather than by a fitting bolted on afterwards.",
+      "They are cast on the same line, from the same mix, as the rest of our range \u2014 so a louver course beds down to the same height as the blocks it sits between, and the mason keeps working instead of packing out a mismatch."
+    ],
+    specs: [
+      ["Application", "Ventilation in walls and screens"],
+      ["Form", "Cast louver block"],
+      ["Function", "Air and light in, rain and sight out"],
+      ["Finish", "Fair-face grey"],
+      ["Nominal dimensions", "TBD"],
+      ["Units per square metre", "TBD"]
+    ],
+    dims: [],
+    dimsNote: "",
+    uses: [
+      ["fa-wind", "Wall ventilation", "Air movement through store rooms, kitchens and toilet blocks."],
+      ["fa-sun", "Daylight", "Light into spaces where a window is not practical."],
+      ["fa-eye-slash", "Privacy screens", "Ventilation that does not hand over the view inside."],
+      ["fa-home", "Gables & stairwells", "Cross-ventilation high in a roof space or a stair core."]
+    ],
+    gallery: [
+      ["products/louver", "A BOKSWA concrete louver block on stacked units in the yard"],
+      ["products/louver-units", "Stacked BOKSWA concrete louver blocks in the production yard"],
+      ["yard/blocks-field", "The BOKSWA yard with cast units laid out"],
+      ["yard/curing-field", "Freshly cast BOKSWA units curing in the open yard"]
+    ],
+    faq: [
+      ["How many louvers does a room need?", "It depends on the room's size and what it is used for \u2014 a store needs less than a kitchen. Tell us the space and we will talk through a sensible number rather than guessing at it from a website."],
+      ["Do louvers weaken the wall?", "A louver course is a ventilation opening, so it is treated like one. Keep them out of the line of concentrated load, and where a run sits under load your engineer will want a lintel over it, exactly as for a window."],
+      ["Can I order louvers with my block order?", "Yes, and most people should. Give us the louver count with your block quantity and it goes out on the same delivery."],
+      ["Which way round do they face?", "The blade sheds rain outward, so the unit has an inside and an outside. Ask us before your masons start the course \u2014 it is an easy thing to lay the wrong way round and an expensive one to correct afterwards."]
+    ]
+  },
+  {
+    slug: "kerb-stones",
+    n: "05",
     name: "Kerb Stones",
     quoteName: "Kerb Stones",
     title: "Precast Concrete Kerb Stones in Kampala, Uganda",
@@ -216,7 +261,7 @@ const PRODUCTS = [
   },
   {
     slug: "maxpans",
-    n: "05",
+    n: "06",
     name: "Maxpans",
     quoteName: "Maxpans",
     title: "Maxpan Concrete Panels for Floor Slabs | Kampala, Uganda",
@@ -263,7 +308,7 @@ const PRODUCTS = [
   },
   {
     slug: "fence-poles",
-    n: "06",
+    n: "07",
     name: "Fence Poles",
     quoteName: "Fence Poles",
     title: "Reinforced Concrete Fence Poles in Kampala, Uganda",
