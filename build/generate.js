@@ -233,7 +233,7 @@ function productPage(p) {
       manufacturer: { "@type": "Organization", name: "BOKSWA Investments (U) Limited", address: "Joggo, Bukerere Road, Kampala, Uganda" }
     }
   }) + header("products.html") + phero({
-    image: p.hero, imageAlt: p.heroAlt,
+    image: p.hero, imageAlt: p.heroAlt, imageMax: p.heroMax || 1800,
     crumb: p.name, crumbMid: ["Products", "products.html"],
     eyebrow: "Product", h1: p.name, lede: p.tagline
   }) + `
@@ -293,7 +293,7 @@ ${p.profiles ? `
     <div class="bk-row">
 ${p.profiles.map(([src, name], i) => `      <div class="bk-col bk-col--4 bk-col--pad">
         <div class="bk-card bk-reveal" data-d="${i % 4}">
-          <div class="bk-card__media bk-card__media--square">${img(src, `BOKSWA ${name} concrete paver profile`, { sizes: "(max-width:860px) 100vw, 25vw" })}</div>
+          <div class="bk-card__media bk-card__media--square">${img(src, name.toLowerCase().includes("louver") ? `BOKSWA concrete ${name.toLowerCase()}` : `BOKSWA ${name} concrete paver profile`, { sizes: "(max-width:860px) 100vw, 25vw" })}</div>
           <div class="bk-card__body" style="padding:18px 20px 22px"><h3 class="bk-h4">${name}</h3></div>
         </div>
       </div>`).join("\n")}
@@ -307,7 +307,7 @@ ${p.profiles.map(([src, name], i) => `      <div class="bk-col bk-col--4 bk-col-
     <p class="bk-eyebrow bk-reveal">In the yard and on site</p>
     <h2 class="bk-h2 bk-reveal bk-head-gap" data-d="1">${p.name} in context</h2>
     <div class="bk-gal">
-${p.gallery.map(([src, alt], i) => `      <div class="bk-gal__item"><figure class="bk-gal__fig">${img(src, alt, { sizes: "(max-width:600px) 100vw, (max-width:980px) 50vw, 33vw" })}<figcaption>${alt}</figcaption></figure></div>`).join("\n")}
+${p.gallery.map(([src, alt, max], i) => `      <div class="bk-gal__item"><figure class="bk-gal__fig">${img(src, alt, { sizes: "(max-width:600px) 100vw, (max-width:980px) 50vw, 33vw", max })}<figcaption>${alt}</figcaption></figure></div>`).join("\n")}
     </div>
   </div>
 </section>
@@ -329,7 +329,7 @@ ${p.gallery.map(([src, alt], i) => `      <div class="bk-gal__item"><figure clas
     <div class="bk-row">
 ${others.map((o, i) => `      <div class="bk-col bk-col--3 bk-col--pad">
         <div class="bk-card bk-reveal" data-d="${i}">
-          <div class="bk-card__media">${img(o.hero, o.heroAlt, { sizes: "(max-width:860px) 100vw, 33vw" })}</div>
+          <div class="bk-card__media">${img(o.hero, o.heroAlt, { sizes: "(max-width:860px) 100vw, 33vw", max: o.heroMax || 1800 })}</div>
           <div class="bk-card__body">
             <h3 class="bk-h3">${o.name}</h3>
             <p>${o.tagline}</p>
@@ -373,7 +373,7 @@ ${PRODUCTS.map(p => `            <button class="explorer-item" role="tab" data-t
           <div class="bk-explorer__stage">
 ${PRODUCTS.map((p, i) => `            <div class="explorer-panel" id="p-${p.slug.split("-")[0]}" role="tabpanel"${i ? " hidden" : ""}>
               <div class="explorer-panel__media">
-                ${img(p.hero, p.heroAlt, { sizes: "(max-width:860px) 100vw, 55vw" })}
+                ${img(p.hero, p.heroAlt, { sizes: "(max-width:860px) 100vw, 55vw", max: p.heroMax || 1800 })}
               </div>
               <div class="explorer-panel__body">
                 <h2 class="bk-h3" data-panel-in>${p.tagline}</h2>

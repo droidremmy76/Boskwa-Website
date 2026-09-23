@@ -160,8 +160,9 @@ const PRODUCTS = [
       ["products/paver-stack", "BOKSWA concrete pavers stacked and ready for dispatch"],
       ["products/paver-bone-ground", "BOKSWA bone-profile concrete paver on the ground"],
       ["texture/paver-walk-a", "Field of BOKSWA interlocking pavers stacked in the yard"],
-      ["products/louver-stack", "Stacked BOKSWA concrete louver units"],
-      ["texture/paver-walk-c", "Close view of BOKSWA pavers stacked for dispatch"]
+      ["products/louver-units", "Stacked BOKSWA concrete louver blocks"],
+      ["texture/paver-walk-c", "Close view of BOKSWA pavers stacked for dispatch"],
+      ["products/louver-stack", "The BOKSWA paver sample board, showing the profiles side by side"]
     ],
     faq: [
       ["Which profile should I choose?", "Structurally the common profiles perform similarly — the choice is mostly appearance and laying speed. Bone and cabbage lay fast in running bond; hexagon reads more decorative. Come to the yard and look at them laid before you decide."],
@@ -221,8 +222,9 @@ const PRODUCTS = [
     title: "Maxpan Concrete Panels for Floor Slabs | Kampala, Uganda",
     meta: "BOKSWA maxpans — precast concrete panels that streamline suspended floor slab and ceiling construction. Manufactured in Kampala, Uganda.",
     tagline: "Panels that simplify slab and ceiling construction",
-    hero: "products/maxpan-panels",
-    heroAlt: "Stacked BOKSWA maxpan concrete panels for slab construction",
+    hero: "products/maxpan-units",
+    heroMax: 1200,
+    heroAlt: "Stacked BOKSWA maxpan hollow-pot units for suspended floor slabs",
     lede: "Precast panels that take formwork, propping and pouring time out of a suspended floor — and get you to a working surface above sooner.",
     body: [
       "A conventional in-situ slab needs shuttering built, propped, poured, cured and then stripped, and every one of those stages is labour and waiting. Maxpans replace most of that. The panels span between supporting beams and become the permanent soffit, so you are laying units instead of building and dismantling formwork.",
@@ -244,11 +246,14 @@ const PRODUCTS = [
       ["fa-clock", "Programme saving", "Less formwork cycling means faster floor-to-floor."],
       ["fa-tree", "Timber saving", "Far less shuttering consumed across a project."]
     ],
+    /* Only one photograph on file is genuinely a maxpan. The rest of this
+       gallery shows the yard and the work, and says so — it does not label
+       kerbs or louvers as maxpans the way the previous set did. */
     gallery: [
-      ["products/maxpan-panels", "Stacked BOKSWA maxpan concrete panels"],
-      ["products/maxpan", "Single BOKSWA maxpan panel"],
-      ["products/maxpan-stack", "BOKSWA maxpans and kerb units stacked in the yard"],
-      ["yard/blocks-field", "The BOKSWA yard with cast units laid out"]
+      ["products/maxpan-units", "Stacked BOKSWA maxpan hollow-pot units", 1200],
+      ["yard/blocks-field", "The BOKSWA yard with cast units laid out"],
+      ["projects/apartments-build", "Apartment block under construction, the kind of suspended-floor work maxpans serve", 1200],
+      ["yard/truck-loaded", "Loaded BOKSWA delivery truck at the yard"]
     ],
     faq: [
       ["What span can maxpans achieve?", "Span depends on the panel and the supporting structure, and it is not something to guess at from a website. Send us your beam spacing and loading and we will confirm what is appropriate before you order."],
