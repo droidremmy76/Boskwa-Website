@@ -349,7 +349,7 @@ ${others.map((o, i) => `      <div class="bk-col bk-col--3 bk-col--pad">
 function productsPage() {
   return head({
     title: "Concrete Blocks, Pavers &amp; Kerb Stones Range | BOKSWA Uganda",
-    meta: "Browse BOKSWA’s solid and hollow concrete blocks, interlocking pavers, kerb stones, maxpans, louvers and fence poles. Factory-direct supply from Mukono to Kampala, Wakiso and central Uganda.",
+    meta: "Explore BOKSWA concrete blocks, interlocking pavers, kerb stones, maxpans, louvers and fence poles. Factory-direct supply from Mukono to Kampala and Wakiso.",
     file: "products.html", ogImage: "products/hollow-block"
   }) + header("products.html") + phero({
     image: "yard/blocks-field",
