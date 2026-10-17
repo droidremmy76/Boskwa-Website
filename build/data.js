@@ -181,7 +181,7 @@ const PRODUCTS = [
     h1: "Concrete Louver Blocks in Uganda",
     quoteName: "Louvers",
     title: "Concrete Louver Blocks in Uganda | BOKSWA Investments",
-    meta: "Cast concrete louver blocks for ventilation in walls, screens and gables \u2014 air and light in, rain and direct sight out. Manufactured by BOKSWA in Mukono, Uganda, supplying Kampala and central Uganda.",
+    meta: "Concrete louver blocks for ventilation in walls, screens and gables. Manufactured at BOKSWA’s Mukono yard for projects across Kampala and central Uganda.",
     tagline: "Cast ventilation that keeps the rain and the view out",
     hero: "products/louver",
     heroAlt: "A BOKSWA concrete louver block resting on stacked units in the production yard",
