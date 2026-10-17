@@ -46,7 +46,7 @@ const PRODUCTS = [
       ["Configuration", "Three-core hollow"],
       ["Finish", "Fair-face grey"],
       ["Compressive strength", "Indicative 3.5–7.0 N/mm²; verify with current test certificate"],
-      ["Nominal dimensions", "125 × 250 × 915 mm (indicative precast edging; confirm order)"],
+      ["Nominal dimensions", "Contact BOKSWA to confirm current hollow-block dimensions"],
       ["Units per pallet", "TBD"]
     ],
     dims: [],
@@ -90,7 +90,7 @@ const PRODUCTS = [
       ["Configuration", "Solid"],
       ["Finish", "Uniform density"],
       ["Compressive strength", "TBD"],
-      ["Nominal dimensions", "TBD"],
+      ["Nominal dimensions", "125 × 250 × 915 mm (indicative precast edging; confirm before ordering)"],
       ["Units per pallet", "TBD"]
     ],
     dims: [],
@@ -118,8 +118,8 @@ const PRODUCTS = [
     n: "03",
     name: "Pavers",
     quoteName: "Pavers",
-    title: "Concrete Pavers in Kampala, Uganda",
-    meta: "Interlocking concrete pavers in bone, hexagon, trihex, rhombus and cabbage profiles, in grey and red. Manufactured by BOKSWA in Kampala, Uganda.",
+    title: "Interlocking Concrete Pavers in Uganda | BOKSWA Investments",
+    meta: "High-strength interlocking concrete pavers for driveways, compounds, and roads in Kampala & central Uganda. Available in bone, hexagon, trihex & cabbage profiles.",
     tagline: "Interlocking surfaces in multiple profiles",
     hero: "products/paver-yard",
     heroAlt: "Thousands of BOKSWA concrete pavers laid out to cure across the production yard",
