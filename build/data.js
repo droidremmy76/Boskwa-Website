@@ -47,7 +47,7 @@ const PRODUCTS = [
       ["Finish", "Fair-face grey"],
       ["Compressive strength", "Indicative 3.5–7.0 N/mm²; verify with current test certificate"],
       ["Nominal dimensions", "Contact BOKSWA to confirm current hollow-block dimensions"],
-      ["Units per pallet", "TBD"]
+      ["Units per pallet", "Contact BOKSWA for the current production specification"]
     ],
     dims: [],
     dimsNote: "",
@@ -89,9 +89,9 @@ const PRODUCTS = [
       ["Application", "Foundations, high-load walling"],
       ["Configuration", "Solid"],
       ["Finish", "Uniform density"],
-      ["Compressive strength", "TBD"],
-      ["Nominal dimensions", "125 × 250 × 915 mm (indicative precast edging; confirm before ordering)"],
-      ["Units per pallet", "TBD"]
+      ["Compressive strength", "Contact BOKSWA for the current production specification"],
+      ["Nominal dimensions", "Contact BOKSWA to confirm current solid-block dimensions"],
+      ["Units per pallet", "Contact BOKSWA for the current production specification"]
     ],
     dims: [],
     dimsNote: "",
@@ -133,8 +133,8 @@ const PRODUCTS = [
       ["Profiles", "Bone, hexagon, trihex, rhombus, cabbage"],
       ["Colours", "Grey and red"],
       ["Thickness", "60 mm (light duty/walkways) & 80 mm (heavy duty/traffic); confirm product profile"],
-      ["Units per square metre", "TBD"],
-      ["Unit weight", "TBD"]
+      ["Units per square metre", "Contact BOKSWA for the current production specification"],
+      ["Unit weight", "Contact BOKSWA for the current production specification"]
     ],
     dims: [],
     dimsNote: "",
@@ -192,8 +192,8 @@ const PRODUCTS = [
       ["Form", "Cast louver block"],
       ["Function", "Air and light in, rain and sight out"],
       ["Finish", "Fair-face grey"],
-      ["Nominal dimensions", "TBD"],
-      ["Units per square metre", "TBD"]
+      ["Nominal dimensions", "Contact BOKSWA for the current production specification"],
+      ["Units per square metre", "Contact BOKSWA for the current production specification"]
     ],
     dims: [],
     dimsNote: "",
@@ -235,9 +235,9 @@ const PRODUCTS = [
       ["Application", "Roadsides, walkways, landscaping"],
       ["Form", "Precast kerb"],
       ["Finish", "Cast edge"],
-      ["Nominal dimensions", "TBD"],
-      ["Unit weight", "TBD"],
-      ["Profiles", "TBD"]
+      ["Nominal dimensions", "125 × 250 × 915 mm (indicative precast edging; confirm before ordering)"],
+      ["Unit weight", "Contact BOKSWA for the current production specification"],
+      ["Profiles", "Contact BOKSWA for the current production specification"]
     ],
     dims: [],
     dimsNote: "",
@@ -279,9 +279,9 @@ const PRODUCTS = [
       ["Application", "Suspended floor slabs, ceilings"],
       ["Form", "Precast concrete panel"],
       ["Benefit", "Reduced formwork and propping"],
-      ["Nominal dimensions", "TBD"],
-      ["Span capability", "TBD"],
-      ["Unit weight", "TBD"]
+      ["Nominal dimensions", "Contact BOKSWA for the current production specification"],
+      ["Span capability", "Contact BOKSWA for the current production specification"],
+      ["Unit weight", "Contact BOKSWA for the current production specification"]
     ],
     dims: [],
     dimsNote: "",
@@ -328,9 +328,9 @@ const PRODUCTS = [
       ["Top", "Angled, for a wire overhang"],
       ["Wire fixing", "Pre-cast holes"],
       ["Benefit", "Rot, termite and fire resistant"],
-      ["Nominal dimensions", "TBD"],
-      ["Reinforcement", "TBD"],
-      ["Unit weight", "TBD"]
+      ["Nominal dimensions", "Contact BOKSWA for the current production specification"],
+      ["Reinforcement", "Contact BOKSWA for the current production specification"],
+      ["Unit weight", "Contact BOKSWA for the current production specification"]
     ],
     dims: [],
     dimsNote: "",
