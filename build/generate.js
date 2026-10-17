@@ -57,7 +57,7 @@ const head = (o) => `<!DOCTYPE html>
 <meta property="og:type" content="website">
 <meta property="og:title" content="${o.title}">
 <meta property="og:description" content="${o.meta}">
-<meta property="og:image" content="assets/img/${o.ogImage || "texture/hero-poster"}-1200.jpg">
+<meta property="og:image" content="https://boskwainvestmentsltd.com/assets/img/${o.ogImage || "texture/hero-poster"}-1200.jpg">
 <meta name="theme-color" content="#0E100F">
 <link rel="icon" href="assets/img/brand/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
