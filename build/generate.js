@@ -223,7 +223,7 @@ ${items.map(([q, a]) => `  <div class="bk-acc__item">
 function productPage(p) {
   const others = PRODUCTS.filter(x => x.slug !== p.slug).slice(0, 3);
   return head({
-    title: `${p.title} | BOKSWA Investments`,
+    title: p.title,
     meta: p.meta,
     file: `product-${p.slug}.html`,
     ogImage: p.hero,
@@ -236,7 +236,7 @@ function productPage(p) {
   }) + header("products.html") + phero({
     image: p.hero, imageAlt: p.heroAlt, imageMax: p.heroMax || 1800,
     crumb: p.name, crumbMid: ["Products", "products.html"],
-    eyebrow: "Product", h1: p.name, lede: p.tagline
+    eyebrow: "Product", h1: p.h1 || p.name, lede: p.tagline
   }) + `
 
 <!-- OVERVIEW + SPEC TABLE (standard section) -->
