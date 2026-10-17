@@ -49,20 +49,21 @@ const head = (o) => `<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <script>document.documentElement.className=document.documentElement.className.replace("no-js","js");</script>
 <title>${o.title}</title>
 <meta name="description" content="${o.meta}">
-<link rel="canonical" href="https://bokswa.co.ug/${o.file}">
+<link rel="canonical" href="https://boskwainvestmentsltd.com/${o.file}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${o.title}">
 <meta property="og:description" content="${o.meta}">
-<meta property="og:image" content="assets/img/${o.ogImage || "texture/hero-poster"}-1200.jpg">
+<meta property="og:image" content="https://boskwainvestmentsltd.com/assets/img/${o.ogImage || "texture/hero-poster"}-1200.jpg">
 <meta name="theme-color" content="#0E100F">
 <link rel="icon" href="assets/img/brand/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
 <link rel="stylesheet" href="assets/css/bokswa.css">
-${o.jsonld ? `<script type="application/ld+json">${JSON.stringify(o.jsonld, null, 2)}</script>` : ""}
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"https://boskwainvestmentsltd.com/#organization","name":"BOKSWA Investments (U) Limited","url":"https://boskwainvestmentsltd.com/","logo":"https://boskwainvestmentsltd.com/assets/img/brand/bokswa-logo-light.png","image":"https://boskwainvestmentsltd.com/assets/img/yard/signboard-1200.jpg","telephone":["+256393002926","+256758381708"],"email":"info@bokswa.co.ug","description":"Ugandan manufacturer of concrete blocks, interlocking pavers, kerb stones, maxpans, louvers and concrete fence poles.","address":{"@type":"PostalAddress","streetAddress":"Joggo, Bukerere Road, 3km off Seeta-Jinja Highway","addressLocality":"Mukono","addressRegion":"Central Region","addressCountry":"UG","postOfficeBoxNumber":"108098"},"geo":{"@type":"GeoCoordinates","latitude":0.404263,"longitude":32.700383},"hasMap":"https://www.google.com/maps/dir/?api=1&destination=0.404263,32.700383","areaServed":[{"@type":"City","name":"Kampala"},{"@type":"City","name":"Mukono"},{"@type":"AdministrativeArea","name":"Wakiso"},{"@type":"City","name":"Kira"},{"@type":"Country","name":"Uganda"}],"sameAs":["https://facebook.com/bokswainvestment","https://instagram.com/bokswainvestment","https://www.tiktok.com/@bokswa_investiments_ltd","https://wa.me/256758381708"]},{"@type":"ItemList","@id":"https://boskwainvestmentsltd.com/#products","name":"Concrete Building Materials and Pavers in Uganda","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Concrete Blocks in Uganda","description":"Hollow and solid concrete walling blocks manufactured by BOKSWA Investments."}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Interlocking Pavers in Uganda","description":"Concrete interlocking pavers for driveways, compounds, walkways and roads."}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Precast Kerb Stones","description":"Precast concrete edging for roads, walkways and paved areas."}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Concrete Fence Poles","description":"Reinforced concrete posts for perimeter fencing."}}]}]}</script>\n${o.jsonld ? `<script type="application/ld+json">${JSON.stringify(o.jsonld, null, 2)}</script>` : ""}
 </head>
 <body>
 <a class="bk-skip" href="#main">Skip to content</a>`;
@@ -230,7 +231,7 @@ function productPage(p) {
       "@context": "https://schema.org", "@type": "Product", name: p.name,
       description: p.meta, category: "Concrete building materials",
       brand: { "@type": "Brand", name: "BOKSWA Investments (U) Limited" },
-      manufacturer: { "@type": "Organization", name: "BOKSWA Investments (U) Limited", address: "Joggo, Bukerere Road, Kampala, Uganda" }
+      manufacturer: { "@type": "Organization", name: "BOKSWA Investments (U) Limited", address: "Joggo, Bukerere Road, Mukono, Uganda" }
     }
   }) + header("products.html") + phero({
     image: p.hero, imageAlt: p.heroAlt, imageMax: p.heroMax || 1800,
@@ -347,8 +348,8 @@ ${others.map((o, i) => `      <div class="bk-col bk-col--3 bk-col--pad">
 /* ---------- products index -------------------------------------------- */
 function productsPage() {
   return head({
-    title: "Our Products — Blocks, Pavers, Louvers, Kerbs, Maxpans & Fence Poles | BOKSWA",
-    meta: "The full BOKSWA range: hollow and solid concrete blocks, interlocking pavers and louvers, kerb stones, maxpans and reinforced fence poles. Manufactured in Kampala, Uganda.",
+    title: "Concrete Blocks, Pavers &amp; Kerb Stones Range | BOKSWA Uganda",
+    meta: "Explore BOKSWA concrete blocks, interlocking pavers, kerb stones, maxpans, louvers and fence poles. Factory-direct supply from Mukono to Kampala and Wakiso.",
     file: "products.html", ogImage: "products/hollow-block"
   }) + header("products.html") + phero({
     image: "yard/blocks-field",
@@ -460,7 +461,7 @@ function manufacturingPage() {
   ];
   return head({
     title: "How We Manufacture — Inside the BOKSWA Yard | Kampala, Uganda",
-    meta: "Aggregate to dispatch: how BOKSWA manufactures concrete blocks, pavers, kerbs and maxpans at our yard in Joggo, Bukerere Road, Kampala. Batching, moulding, curing and quality control.",
+    meta: "See how BOKSWA manufactures concrete blocks, pavers, kerbs and maxpans at its Joggo, Mukono yard, from batching and moulding to curing and dispatch.",
     file: "manufacturing.html", ogImage: "yard/plant-conveyor"
   }) + header("manufacturing.html") + phero({
     image: "yard/plant-conveyor",
@@ -603,7 +604,7 @@ ${items.map(([src, alt, cap, cat, max]) => `      <div class="bk-gal__item" data
         <p class="bk-lede bk-reveal" data-d="2">
           We supply residential builds, commercial shells, compounds and infrastructure
           work across Kampala, Mukono and the neighbouring districts. Bulk quantities
-          are stacked and dispatched from Joggo, 3km off the Seeta&ndash;Jinja Highway.
+          are stacked and dispatched from Joggo, Mukono, 3 km off the Seeta&ndash;Jinja Highway.
         </p>
         <div class="bk-row" style="margin-top:30px">
           <div class="bk-col bk-col--2"><div class="bk-stat bk-reveal" data-d="3"><b>Seven</b><span>Product lines supplied</span></div></div>
@@ -625,8 +626,8 @@ ${items.map(([src, alt, cap, cat, max]) => `      <div class="bk-gal__item" data
 /* ---------- about ------------------------------------------------------ */
 function aboutPage() {
   return head({
-    title: "About BOKSWA Investments (U) Limited | Concrete Manufacturer, Kampala",
-    meta: "BOKSWA Investments (U) Limited is a Ugandan construction-materials manufacturer supplying high-durability concrete components from its yard at Joggo, Bukerere Road, Kampala.",
+    title: "About BOKSWA Investments | Concrete Manufacturer Uganda",
+    meta: "BOKSWA manufactures concrete building materials at Joggo, Mukono, supplying projects in Kampala, Wakiso and across central Uganda.",
     file: "about.html", ogImage: "people/team"
   }) + header("about.html") + phero({
     image: "people/team",
@@ -749,7 +750,7 @@ function aboutPage() {
           neighbouring districts.
         </p>
         <ul style="list-style:none;padding:0;margin:26px 0 0">
-          <li class="bk-reveal" data-d="3" style="margin-bottom:10px"><i class="fas fa-map-marker-alt bk-or"></i>&nbsp; Joggo, Bukerere Road, 3km off Seeta&ndash;Jinja Highway, Kampala</li>
+          <li class="bk-reveal" data-d="3" style="margin-bottom:10px"><i class="fas fa-map-marker-alt bk-or"></i>&nbsp; Joggo, Bukerere Road, 3 km off Seeta&ndash;Jinja Highway, Mukono</li>
           <li class="bk-reveal" data-d="4" style="margin-bottom:10px"><i class="fas fa-envelope-open-text bk-or"></i>&nbsp; P.O. Box 108098, Kampala, Uganda</li>
           <li class="bk-reveal" data-d="5"><i class="fas fa-phone-alt bk-or"></i>&nbsp; <a href="tel:${TEL2}">${TEL2_DISPLAY}</a> / <a href="tel:${TEL}">${TEL_DISPLAY}</a></li>
         </ul>
@@ -770,8 +771,8 @@ function aboutPage() {
 /* ---------- contact ---------------------------------------------------- */
 function contactPage() {
   return head({
-    title: "Contact BOKSWA & Request a Quote | Kampala, Uganda",
-    meta: "Request a quote for concrete blocks, pavers, kerb stones, maxpans or fence poles. Call 0758 381708, WhatsApp us, or visit our yard at Joggo, Bukerere Road, Kampala.",
+    title: "Contact BOKSWA &amp; Request a Quote | Uganda",
+    meta: "Request a quote for concrete blocks, pavers, kerb stones, maxpans or fence poles. Call 0758 381708, WhatsApp us, or visit our yard at Joggo, Bukerere Road, Mukono.",
     file: "contact.html", ogImage: "yard/signboard",
     jsonld: {
       "@context": "https://schema.org", "@type": "LocalBusiness",
@@ -780,7 +781,7 @@ function contactPage() {
       geo: { "@type": "GeoCoordinates", latitude: 0.404263, longitude: 32.700383 },
       hasMap: "https://www.google.com/maps/search/?api=1&query=0.404263,32.700383",
       sameAs: ["https://facebook.com/bokswainvestment", "https://instagram.com/bokswainvestment", "https://www.tiktok.com/@bokswa_investiments_ltd", `https://wa.me/${WA}`],
-      address: { "@type": "PostalAddress", streetAddress: "Joggo, along Bukerere Road, 3km off Seeta–Jinja Highway", addressLocality: "Kampala", addressCountry: "UG", postOfficeBoxNumber: "108098" }
+      address: { "@type": "PostalAddress", streetAddress: "Joggo, Bukerere Road, 3 km off Seeta–Jinja Highway", addressLocality: "Mukono", addressCountry: "UG", postOfficeBoxNumber: "108098" }
     }
   }) + header("contact.html") + phero({
     image: "yard/signboard",
@@ -796,7 +797,7 @@ function contactPage() {
       <div class="bk-col bk-col--4 bk-col--pad"><div class="bk-iconbox bk-reveal"><i class="fas fa-phone-alt"></i><h3 class="bk-h4">Call the yard</h3><p><a class="bk-inline-link" href="tel:${TEL}">${TEL_DISPLAY}</a><br><a class="bk-inline-link" href="tel:${TEL2}">${TEL2_DISPLAY}</a></p></div></div>
       <div class="bk-col bk-col--4 bk-col--pad"><a class="bk-iconbox bk-reveal" data-d="1" href="https://wa.me/${WA}" target="_blank" rel="noopener" style="text-decoration:none"><i class="fab fa-whatsapp"></i><h3 class="bk-h4">WhatsApp</h3><p>Fastest route to a price. Send your quantity.</p></a></div>
       <div class="bk-col bk-col--4 bk-col--pad"><a class="bk-iconbox bk-reveal" data-d="2" href="mailto:${EMAIL}" style="text-decoration:none"><i class="fas fa-envelope"></i><h3 class="bk-h4">Email</h3><p>${EMAIL}</p></a></div>
-      <div class="bk-col bk-col--4 bk-col--pad"><a class="bk-iconbox bk-reveal" data-d="3" href="${MAP}" target="_blank" rel="noopener" style="text-decoration:none"><i class="fas fa-map-marker-alt"></i><h3 class="bk-h4">Visit the yard</h3><p>Joggo, Bukerere Road, Kampala</p></a></div>
+      <div class="bk-col bk-col--4 bk-col--pad"><a class="bk-iconbox bk-reveal" data-d="3" href="${MAP}" target="_blank" rel="noopener" style="text-decoration:none"><i class="fas fa-map-marker-alt"></i><h3 class="bk-h4">Visit the yard</h3><p>Joggo, Bukerere Road, Mukono</p></a></div>
     </div>
   </div>
 </section>
@@ -875,7 +876,7 @@ ${PRODUCTS.map(p => `              <option value="${p.quoteName}">${p.name}</opt
             during working hours &mdash; call ahead and we will have your order stacked.
           </p>
           <ul style="list-style:none;padding:0;margin:22px 0 0" class="bk-reveal" data-d="3">
-            <li style="margin-bottom:10px"><i class="fas fa-map-marker-alt bk-or"></i>&nbsp; Joggo, Bukerere Road, Kampala</li>
+            <li style="margin-bottom:10px"><i class="fas fa-map-marker-alt bk-or"></i>&nbsp; Joggo, Bukerere Road, Mukono</li>
             <li style="margin-bottom:10px"><i class="fas fa-envelope-open-text bk-or"></i>&nbsp; P.O. Box 108098, Kampala</li>
             <li style="margin-bottom:10px"><i class="fas fa-phone-alt bk-or"></i>&nbsp; <a href="tel:${TEL2}">${TEL2_DISPLAY}</a></li>
             <li><i class="fas fa-mobile-alt bk-or"></i>&nbsp; <a href="tel:${TEL}">${TEL_DISPLAY}</a></li>
