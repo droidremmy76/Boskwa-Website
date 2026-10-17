@@ -461,7 +461,7 @@ function manufacturingPage() {
   ];
   return head({
     title: "How We Manufacture — Inside the BOKSWA Yard | Kampala, Uganda",
-    meta: "Aggregate to dispatch: how BOKSWA manufactures concrete blocks, pavers, kerbs and maxpans at our yard in Joggo, Bukerere Road, Mukono. Batching, moulding, curing and quality control.",
+    meta: "See how BOKSWA manufactures concrete blocks, pavers, kerbs and maxpans at its Joggo, Mukono yard, from batching and moulding to curing and dispatch.",
     file: "manufacturing.html", ogImage: "yard/plant-conveyor"
   }) + header("manufacturing.html") + phero({
     image: "yard/plant-conveyor",
@@ -627,7 +627,7 @@ ${items.map(([src, alt, cap, cat, max]) => `      <div class="bk-gal__item" data
 function aboutPage() {
   return head({
     title: "About BOKSWA Investments | Concrete Manufacturer Uganda",
-    meta: "BOKSWA Investments (U) Limited is a Ugandan construction-materials manufacturer supplying high-durability concrete components from its yard at Joggo, Bukerere Road, Mukono.",
+    meta: "BOKSWA manufactures concrete building materials at Joggo, Mukono, supplying projects in Kampala, Wakiso and across central Uganda.",
     file: "about.html", ogImage: "people/team"
   }) + header("about.html") + phero({
     image: "people/team",
