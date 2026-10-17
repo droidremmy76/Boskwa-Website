@@ -348,8 +348,8 @@ ${others.map((o, i) => `      <div class="bk-col bk-col--3 bk-col--pad">
 /* ---------- products index -------------------------------------------- */
 function productsPage() {
   return head({
-    title: "Our Products — Blocks, Pavers, Louvers, Kerbs, Maxpans & Fence Poles | BOKSWA",
-    meta: "The full BOKSWA range: hollow and solid concrete blocks, interlocking pavers and louvers, kerb stones, maxpans and reinforced fence poles. Manufactured in Mukono, Uganda, supplying Kampala and central Uganda.",
+    title: "Concrete Blocks, Pavers &amp; Kerb Stones Range | BOKSWA Uganda",
+    meta: "Browse BOKSWA’s solid and hollow concrete blocks, interlocking pavers, kerb stones, maxpans, louvers and fence poles. Factory-direct supply from Mukono to Kampala, Wakiso and central Uganda.",
     file: "products.html", ogImage: "products/hollow-block"
   }) + header("products.html") + phero({
     image: "yard/blocks-field",
