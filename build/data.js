@@ -265,7 +265,7 @@ const PRODUCTS = [
     name: "Maxpans",
     quoteName: "Maxpans",
     title: "Maxpan Concrete Panels for Floor Slabs | BOKSWA Uganda",
-    meta: "BOKSWA maxpans — precast concrete panels that streamline suspended floor slab and ceiling construction. Manufactured in Mukono, Uganda, supplying Kampala and central Uganda.",
+    meta: "BOKSWA maxpans are precast concrete panels for suspended floor slabs and ceilings, manufactured in Mukono and supplied across central Uganda.",
     tagline: "Panels that simplify slab and ceiling construction",
     hero: "products/maxpan-units",
     heroMax: 1200,
