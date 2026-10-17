@@ -604,7 +604,7 @@ ${items.map(([src, alt, cap, cat, max]) => `      <div class="bk-gal__item" data
         <p class="bk-lede bk-reveal" data-d="2">
           We supply residential builds, commercial shells, compounds and infrastructure
           work across Kampala, Mukono and the neighbouring districts. Bulk quantities
-          are stacked and dispatched from Joggo, 3km off the Seeta&ndash;Jinja Highway.
+          are stacked and dispatched from Joggo, Mukono, 3 km off the Seeta&ndash;Jinja Highway.
         </p>
         <div class="bk-row" style="margin-top:30px">
           <div class="bk-col bk-col--2"><div class="bk-stat bk-reveal" data-d="3"><b>Seven</b><span>Product lines supplied</span></div></div>
@@ -626,7 +626,7 @@ ${items.map(([src, alt, cap, cat, max]) => `      <div class="bk-gal__item" data
 /* ---------- about ------------------------------------------------------ */
 function aboutPage() {
   return head({
-    title: "About BOKSWA Investments (U) Limited | Concrete Manufacturer, Kampala",
+    title: "About BOKSWA Investments | Concrete Manufacturer Uganda",
     meta: "BOKSWA Investments (U) Limited is a Ugandan construction-materials manufacturer supplying high-durability concrete components from its yard at Joggo, Bukerere Road, Mukono.",
     file: "about.html", ogImage: "people/team"
   }) + header("about.html") + phero({
@@ -771,7 +771,7 @@ function aboutPage() {
 /* ---------- contact ---------------------------------------------------- */
 function contactPage() {
   return head({
-    title: "Contact BOKSWA & Request a Quote | Kampala, Uganda",
+    title: "Contact BOKSWA &amp; Request a Quote | Uganda",
     meta: "Request a quote for concrete blocks, pavers, kerb stones, maxpans or fence poles. Call 0758 381708, WhatsApp us, or visit our yard at Joggo, Bukerere Road, Mukono.",
     file: "contact.html", ogImage: "yard/signboard",
     jsonld: {
