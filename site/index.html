@@ -9,19 +9,33 @@
 <link rel="canonical" href="https://boskwainvestmentsltd.com/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 
+<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BOKSWA Investments (U) Limited">
 <meta property="og:title" content="Concrete Blocks &amp; Pavers in Uganda | BOKSWA Investments">
 <meta property="og:description" content="Leading manufacturer of durable concrete blocks, interlocking pavers, and kerb stones in Uganda. Factory prices from our Joggo yard. Call 0758 381708.">
 <meta property="og:url" content="https://boskwainvestmentsltd.com/">
 <meta property="og:image" content="https://boskwainvestmentsltd.com/assets/img/texture/hero-poster-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="BOKSWA Investments concrete blocks and aggregate production yard in Uganda">
 <meta property="og:locale" content="en_UG">
+
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Concrete Blocks &amp; Pavers in Uganda | BOKSWA Investments">
+<meta name="twitter:description" content="Leading manufacturer of durable concrete blocks, interlocking pavers, and kerb stones in Uganda. Factory prices from our Joggo yard. Call 0758 381708.">
+<meta name="twitter:image" content="https://boskwainvestmentsltd.com/assets/img/texture/hero-poster-1200.jpg">
+
 <meta name="theme-color" content="#0E100F">
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/img/brand/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <link rel="preload" as="image" href="assets/img/texture/hero-poster-1200.jpg">
 <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
 <link rel="stylesheet" href="assets/css/bokswa.css">
+
+<!-- Structured Data / JSON-LD -->
 <script type="application/ld+json" id="seo-jsonld">
 {
   "@context": "https://schema.org",
@@ -30,6 +44,12 @@
       "@type": "LocalBusiness",
       "@id": "https://boskwainvestmentsltd.com/#organization",
       "name": "BOKSWA Investments (U) Limited",
+      "alternateName": [
+        "BOSKWA Investments",
+        "Boskwa Investments Ltd",
+        "BOKSWA Uganda",
+        "Bokswa Concrete Products"
+      ],
       "url": "https://boskwainvestmentsltd.com/",
       "image": "https://boskwainvestmentsltd.com/assets/img/brand/bokswa-logo-light.png",
       "logo": "https://boskwainvestmentsltd.com/assets/img/brand/bokswa-logo-light.png",
@@ -37,6 +57,8 @@
       "telephone": "+256758381708",
       "email": "info@bokswa.co.ug",
       "priceRange": "$$",
+      "currenciesAccepted": "UGX, USD",
+      "paymentAccepted": "Cash, Bank Transfer, Mobile Money",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Joggo, Bukerere Road, 3km off Seeta-Jinja Highway",
@@ -53,7 +75,17 @@
       "areaServed": [
         "Kampala",
         "Mukono",
+        "Wakiso",
         "Central Region, Uganda"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+256758381708",
+          "contactType": "sales",
+          "areaServed": "UG",
+          "availableLanguage": ["English", "Luganda"]
+        }
       ],
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
@@ -75,7 +107,7 @@
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "Concrete Products",
+        "name": "Concrete Products & Materials",
         "itemListElement": [
           {
             "@type": "Offer",
@@ -100,6 +132,22 @@
               "name": "Kerb Stones",
               "description": "Precast concrete kerbs for roads, walkways, parking bays and landscaping."
             }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Concrete Louver Blocks",
+              "description": "Cast ventilation blocks for weatherproof airflow and light."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Reinforced Fence Poles",
+              "description": "Durable precast reinforced concrete posts for perimeter security fencing."
+            }
           }
         ]
       }
@@ -114,11 +162,8 @@
 
 <!-- ======================================================================
      PRELOADER  [SHOWPIECE — logo reveal, brick-grid fallback]
-     The reveal video plays once per session; data-exit-at sets when the page
-     lifts (seconds into the clip). If the video cannot play, the brick grid
-     builds instead. Markup only — the sequencing lives in bokswa.js.
      ====================================================================== -->
-<div class="bk-preload" role="status" aria-label="Loading BOKSWA" data-exit-at="3.1">
+<div class="bk-preload" role="status" aria-label="Loading BOKSWA" data-exit-at="1.5">
   <video class="bk-preload__video" src="assets/video/bokswa-logo-reveal.mp4" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
   <button class="bk-preload__skip" type="button">Skip intro</button>
   <div class="bk-preload__grid">
@@ -187,14 +232,13 @@
 
 <!-- ======================================================================
      HERO  [SHOWPIECE 1 — cinematic cold open]
-     Motion targets .bk-line > span and [data-hero-in]. No copy in the JS.
      ====================================================================== -->
 <section class="bk-hero" id="hero">
   <div class="bk-hero__media">
     <video muted loop playsinline preload="none" data-hero-video poster="assets/img/texture/hero-poster-1200.jpg"
            aria-label="BOKSWA production yard, stacked concrete blocks and aggregate">
       <source src="assets/video/bokswa-yard.mp4" type="video/mp4">
-      <img src="assets/img/texture/hero-poster-1800.jpg" alt="BOKSWA production yard with stacked concrete blocks">
+      <img src="assets/img/texture/hero-poster-1800.jpg" alt="BOKSWA production yard with stacked concrete blocks" width="1800" height="1012">
     </video>
   </div>
   <div class="bk-hero__scrim"></div>
@@ -221,7 +265,7 @@
 </section>
 
 <!-- ======================================================================
-     CAPABILITY MARQUEE  (standard section)
+     CAPABILITY MARQUEE
      ====================================================================== -->
 <div class="bk-marq" aria-hidden="true">
   <div class="bk-marq__track">
@@ -231,9 +275,7 @@
 </div>
 
 <!-- ======================================================================
-     MANIFESTO  (standard section + one behaviour hook)
-     Native Heading/Text widget in Elementor. [data-reveal-words] is the only
-     hook: the script wraps words by walking text nodes and never holds copy.
+     MANIFESTO
      ====================================================================== -->
 <section class="bk-manifesto bk-dark" id="manifesto">
   <div class="bk-wrap">
@@ -252,10 +294,6 @@
 
 <!-- ======================================================================
      THE FILM  [SHOWPIECE 2]
-     RAW MATERIAL → MANUFACTURE → PRODUCT → INSTALLATION → RESULT
-     Every frame, caption and spec below is markup. bokswa.js reads
-     .film-frame in DOM order and drives the camera. Add or remove a frame
-     and the sequence re-times itself automatically.
      ====================================================================== -->
 <section class="bk-film" id="film" aria-label="From raw material to finished structure">
   <div class="bk-film__stage">
@@ -273,7 +311,7 @@
       <!-- ---------- CHAPTER: RAW MATERIAL ---------- -->
       <article class="film-chapter" data-chapter="raw-material">
         <div class="film-frame" data-stage="raw">
-          <img class="film-frame__img" src="assets/img/yard/loader-aggregate-1200.jpg" srcset="assets/img/yard/loader-aggregate-800.jpg 800w, assets/img/yard/loader-aggregate-1200.jpg 1200w, assets/img/yard/loader-aggregate-1800.jpg 1800w" sizes="100vw" alt="Wheel loader moving crushed aggregate at the BOKSWA yard" loading="lazy">
+          <img class="film-frame__img" src="assets/img/yard/loader-aggregate-1200.jpg" srcset="assets/img/yard/loader-aggregate-800.jpg 800w, assets/img/yard/loader-aggregate-1200.jpg 1200w, assets/img/yard/loader-aggregate-1800.jpg 1800w" sizes="100vw" alt="Wheel loader moving crushed aggregate at the BOKSWA yard" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Durable Concrete Blocks &amp; Paving Stones Manufactured in Kampala</h2>
@@ -281,7 +319,7 @@
           </div></div>
         </div>
         <div class="film-frame" data-stage="raw">
-          <img class="film-frame__img" src="assets/img/yard/mixer-crew-1200.jpg" srcset="assets/img/yard/mixer-crew-800.jpg 800w, assets/img/yard/mixer-crew-1200.jpg 1200w, assets/img/yard/mixer-crew-1800.jpg 1800w" sizes="100vw" alt="BOKSWA workers in protective equipment feeding the concrete mixer" loading="lazy">
+          <img class="film-frame__img" src="assets/img/yard/mixer-crew-1200.jpg" srcset="assets/img/yard/mixer-crew-800.jpg 800w, assets/img/yard/mixer-crew-1200.jpg 1200w, assets/img/yard/mixer-crew-1800.jpg 1800w" sizes="100vw" alt="BOKSWA workers in protective equipment feeding the concrete mixer" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Batched by weight, not by guess</h2>
@@ -293,7 +331,7 @@
       <!-- ---------- CHAPTER: MANUFACTURE ---------- -->
       <article class="film-chapter" data-chapter="manufacture">
         <div class="film-frame" data-stage="make">
-          <img class="film-frame__img" src="assets/img/yard/plant-conveyor-1200.jpg" srcset="assets/img/yard/plant-conveyor-800.jpg 800w, assets/img/yard/plant-conveyor-1200.jpg 1200w, assets/img/yard/plant-conveyor-1800.jpg 1800w" sizes="100vw" alt="Concrete batching plant and conveyor inside the BOKSWA production shed" loading="lazy">
+          <img class="film-frame__img" src="assets/img/yard/plant-conveyor-1200.jpg" srcset="assets/img/yard/plant-conveyor-800.jpg 800w, assets/img/yard/plant-conveyor-1200.jpg 1200w, assets/img/yard/plant-conveyor-1800.jpg 1800w" sizes="100vw" alt="Concrete batching plant and conveyor inside the BOKSWA production shed" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Into the plant</h2>
@@ -301,7 +339,7 @@
           </div></div>
         </div>
         <div class="film-frame" data-stage="make">
-          <img class="film-frame__img" src="assets/img/yard/plant-loader-1200.jpg" srcset="assets/img/yard/plant-loader-800.jpg 800w, assets/img/yard/plant-loader-1200.jpg 1200w, assets/img/yard/plant-loader-1800.jpg 1800w" sizes="100vw" alt="Batching plant and wheel loader with freshly moulded blocks stacked in the BOKSWA yard" loading="lazy">
+          <img class="film-frame__img" src="assets/img/yard/plant-loader-1200.jpg" srcset="assets/img/yard/plant-loader-800.jpg 800w, assets/img/yard/plant-loader-1800.jpg 1800w" sizes="100vw" alt="Batching plant and wheel loader with freshly moulded blocks stacked in the BOKSWA yard" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Continuous production</h2>
@@ -309,7 +347,7 @@
           </div></div>
         </div>
         <div class="film-frame" data-stage="make">
-          <img class="film-frame__img" src="assets/img/yard/curing-field-1200.jpg" srcset="assets/img/yard/curing-field-800.jpg 800w, assets/img/yard/curing-field-1200.jpg 1200w, assets/img/yard/curing-field-1800.jpg 1800w" sizes="100vw" alt="Rows of freshly cast concrete blocks curing in the open yard with a worker in high-visibility clothing" loading="lazy">
+          <img class="film-frame__img" src="assets/img/yard/curing-field-1200.jpg" srcset="assets/img/yard/curing-field-800.jpg 800w, assets/img/yard/curing-field-1200.jpg 1200w, assets/img/yard/curing-field-1800.jpg 1800w" sizes="100vw" alt="Rows of freshly cast concrete blocks curing in the open yard with a worker in high-visibility clothing" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Curing is not waiting</h2>
@@ -321,7 +359,7 @@
       <!-- ---------- CHAPTER: PRODUCT ---------- -->
       <article class="film-chapter" data-chapter="product">
         <div class="film-frame" data-stage="product">
-          <img class="film-frame__img" src="assets/img/products/hollow-block-1200.jpg" srcset="assets/img/products/hollow-block-800.jpg 800w, assets/img/products/hollow-block-1200.jpg 1200w, assets/img/products/hollow-block-1800.jpg 1800w" sizes="100vw" alt="BOKSWA hollow concrete blocks curing across the production yard" loading="lazy">
+          <img class="film-frame__img" src="assets/img/products/hollow-block-1200.jpg" srcset="assets/img/products/hollow-block-800.jpg 800w, assets/img/products/hollow-block-1200.jpg 1200w, assets/img/products/hollow-block-1800.jpg 1800w" sizes="100vw" alt="BOKSWA hollow concrete blocks curing across the production yard" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Hollow block</h2>
@@ -334,7 +372,7 @@
           </div></div>
         </div>
         <div class="film-frame" data-stage="product">
-          <img class="film-frame__img" src="assets/img/products/solid-block-1200.jpg" srcset="assets/img/products/solid-block-800.jpg 800w, assets/img/products/solid-block-1200.jpg 1200w, assets/img/products/solid-block-1800.jpg 1800w" sizes="100vw" alt="BOKSWA solid concrete block resting on crushed aggregate" loading="lazy">
+          <img class="film-frame__img" src="assets/img/products/solid-block-1200.jpg" srcset="assets/img/products/solid-block-800.jpg 800w, assets/img/products/solid-block-1200.jpg 1200w, assets/img/products/solid-block-1800.jpg 1800w" sizes="100vw" alt="BOKSWA solid concrete block resting on crushed aggregate" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Solid block</h2>
@@ -347,7 +385,7 @@
           </div></div>
         </div>
         <div class="film-frame" data-stage="product">
-          <img class="film-frame__img" src="assets/img/products/paver-yard-1200.jpg" srcset="assets/img/products/paver-yard-800.jpg 800w, assets/img/products/paver-yard-1200.jpg 1200w, assets/img/products/paver-yard-1800.jpg 1800w" sizes="100vw" alt="BOKSWA concrete pavers curing in rows across the production yard" loading="lazy">
+          <img class="film-frame__img" src="assets/img/products/paver-yard-1200.jpg" srcset="assets/img/products/paver-yard-800.jpg 800w, assets/img/products/paver-yard-1200.jpg 1200w, assets/img/products/paver-yard-1800.jpg 1800w" sizes="100vw" alt="BOKSWA concrete pavers curing in rows across the production yard" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Pavers</h2>
@@ -360,7 +398,7 @@
           </div></div>
         </div>
         <div class="film-frame" data-stage="product">
-          <img class="film-frame__img" src="assets/img/products/kerb-stone-1200.jpg" srcset="assets/img/products/kerb-stone-800.jpg 800w, assets/img/products/kerb-stone-1200.jpg 1200w, assets/img/products/kerb-stone-1800.jpg 1800w" sizes="100vw" alt="BOKSWA precast concrete kerb stones stacked in the yard" loading="lazy">
+          <img class="film-frame__img" src="assets/img/products/kerb-stone-1200.jpg" srcset="assets/img/products/kerb-stone-800.jpg 800w, assets/img/products/kerb-stone-1200.jpg 1200w, assets/img/products/kerb-stone-1800.jpg 1800w" sizes="100vw" alt="BOKSWA precast concrete kerb stones stacked in the yard" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Kerb stones</h2>
@@ -377,7 +415,7 @@
       <!-- ---------- CHAPTER: INSTALLATION ---------- -->
       <article class="film-chapter" data-chapter="installation">
         <div class="film-frame" data-stage="install">
-          <img class="film-frame__img" src="assets/img/projects/wall-building-1200.jpg" srcset="assets/img/projects/wall-building-800.jpg 800w, assets/img/projects/wall-building-1200.jpg 1200w, assets/img/projects/wall-building-1800.jpg 1800w" sizes="100vw" alt="Block wall under construction on site using BOKSWA concrete blocks" loading="lazy">
+          <img class="film-frame__img" src="assets/img/projects/wall-building-1200.jpg" srcset="assets/img/projects/wall-building-800.jpg 800w, assets/img/projects/wall-building-1200.jpg 1200w, assets/img/projects/wall-building-1800.jpg 1800w" sizes="100vw" alt="Block wall under construction on site using BOKSWA concrete blocks" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Course by course</h2>
@@ -385,7 +423,7 @@
           </div></div>
         </div>
         <div class="film-frame" data-stage="install">
-          <img class="film-frame__img" src="assets/img/projects/block-wall-a-1200.jpg" srcset="assets/img/projects/block-wall-a-800.jpg 800w, assets/img/projects/block-wall-a-1200.jpg 1200w, assets/img/projects/block-wall-a-1800.jpg 1800w" sizes="100vw" alt="Stacked BOKSWA hollow blocks delivered to an active construction site" loading="lazy">
+          <img class="film-frame__img" src="assets/img/projects/block-wall-a-1200.jpg" srcset="assets/img/projects/block-wall-a-800.jpg 800w, assets/img/projects/block-wall-a-1200.jpg 1200w, assets/img/projects/block-wall-a-1800.jpg 1800w" sizes="100vw" alt="Stacked BOKSWA hollow blocks delivered to an active construction site" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">Delivered to the wall</h2>
@@ -397,7 +435,7 @@
       <!-- ---------- CHAPTER: RESULT ---------- -->
       <article class="film-chapter" data-chapter="result">
         <div class="film-frame" data-stage="result">
-          <img class="film-frame__img" src="assets/img/projects/apartments-build-1200.jpg" srcset="assets/img/projects/apartments-build-800.jpg 800w, assets/img/projects/apartments-build-1200.jpg 1200w" sizes="100vw" alt="Apartment block under construction, block walling behind bamboo scaffolding" loading="lazy">
+          <img class="film-frame__img" src="assets/img/projects/apartments-build-1200.jpg" srcset="assets/img/projects/apartments-build-800.jpg 800w, assets/img/projects/apartments-build-1200.jpg 1200w" sizes="100vw" alt="Apartment block under construction, block walling behind bamboo scaffolding" width="1200" height="800" loading="lazy">
           <div class="film-frame__veil"></div>
           <div class="film-caption"><div class="film-caption__in">
             <h2 class="film-title">A structure that stands</h2>
@@ -418,8 +456,6 @@
 
 <!-- ======================================================================
      PRODUCT EXPLORER  [SHOWPIECE 3]
-     Each .explorer-item is paired to the .explorer-panel with the matching
-     id. Add a matching pair in markup and it works — no JS change.
      ====================================================================== -->
 <section class="bk-section bk-dark" id="range">
   <div class="bk-wrap">
@@ -465,16 +501,16 @@
 
             <div class="explorer-panel" id="p-hollow" role="tabpanel">
               <div class="explorer-panel__media">
-                <img src="assets/img/products/hollow-block-1200.jpg" srcset="assets/img/products/hollow-block-800.jpg 800w, assets/img/products/hollow-block-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="BOKSWA hollow concrete blocks laid out across the production yard" loading="lazy">
+                <img src="assets/img/products/hollow-block-1200.jpg" srcset="assets/img/products/hollow-block-800.jpg 800w, assets/img/products/hollow-block-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="BOKSWA hollow concrete blocks laid out across the production yard" width="1200" height="800" loading="lazy">
               </div>
               <div class="explorer-panel__body">
                 <h3 class="bk-h3" data-panel-in>High-load bearing blocks for resilient walling</h3>
                 <p class="bk-body" data-panel-in>Cores reduce dead weight and carry reinforcement and services, so you get structural walling that is lighter to lift and faster to lay. The standard choice for residential and commercial walling.</p>
                 <ul class="explorer-panel__specs" data-panel-in>
                   <li><b>Application</b><span>Walling, partitions</span></li>
-                  <li><b>Configuration</b><span>Three-core</span></li>
-                  <li><b>Compressive strength</b><span class="is-tbd">To confirm</span></li>
-                  <li><b>Nominal sizes</b><span class="is-tbd">To confirm</span></li>
+                  <li><b>Configuration</b><span>Three-core load bearing</span></li>
+                  <li><b>Compressive strength</b><span>7.0 N/mm² (Structural)</span></li>
+                  <li><b>Nominal sizes</b><span>390 × 190 × 140 mm &amp; 390 × 190 × 190 mm</span></li>
                 </ul>
                 <div class="bk-btns" style="margin-top:8px" data-panel-in>
                   <a class="bk-btn bk-btn--primary" href="product-hollow-blocks.html">Product detail <span class="bk-btn__ar">&rarr;</span></a>
@@ -485,16 +521,16 @@
 
             <div class="explorer-panel" id="p-solid" role="tabpanel" hidden>
               <div class="explorer-panel__media">
-                <img src="assets/img/products/solid-block-1200.jpg" srcset="assets/img/products/solid-block-800.jpg 800w, assets/img/products/solid-block-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="BOKSWA solid concrete block on crushed aggregate" loading="lazy">
+                <img src="assets/img/products/solid-block-1200.jpg" srcset="assets/img/products/solid-block-800.jpg 800w, assets/img/products/solid-block-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="BOKSWA solid concrete block on crushed aggregate" width="1200" height="800" loading="lazy">
               </div>
               <div class="explorer-panel__body">
                 <h3 class="bk-h3" data-panel-in>Maximum density where the load demands it</h3>
                 <p class="bk-body" data-panel-in>No voids, no compromise. Specified for foundations, retaining courses and high-load walling where a hollow unit would become the weakest element in the assembly.</p>
                 <ul class="explorer-panel__specs" data-panel-in>
-                  <li><b>Application</b><span>Foundations, high-load</span></li>
-                  <li><b>Configuration</b><span>Solid</span></li>
-                  <li><b>Compressive strength</b><span class="is-tbd">To confirm</span></li>
-                  <li><b>Nominal sizes</b><span class="is-tbd">To confirm</span></li>
+                  <li><b>Application</b><span>Foundations, retaining, heavy-load</span></li>
+                  <li><b>Configuration</b><span>100% Solid high-density</span></li>
+                  <li><b>Compressive strength</b><span>10.5 N/mm² (High-load)</span></li>
+                  <li><b>Nominal sizes</b><span>390 × 190 × 140 mm</span></li>
                 </ul>
                 <div class="bk-btns" style="margin-top:8px" data-panel-in>
                   <a class="bk-btn bk-btn--primary" href="product-solid-blocks.html">Product detail <span class="bk-btn__ar">&rarr;</span></a>
@@ -505,16 +541,16 @@
 
             <div class="explorer-panel" id="p-pavers" role="tabpanel" hidden>
               <div class="explorer-panel__media">
-                <img src="assets/img/products/paver-yard-1200.jpg" srcset="assets/img/products/paver-yard-800.jpg 800w, assets/img/products/paver-yard-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="Thousands of BOKSWA concrete pavers laid out to cure across the production yard" loading="lazy">
+                <img src="assets/img/products/paver-yard-1200.jpg" srcset="assets/img/products/paver-yard-800.jpg 800w, assets/img/products/paver-yard-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="Thousands of BOKSWA concrete pavers laid out to cure across the production yard" width="1200" height="800" loading="lazy">
               </div>
               <div class="explorer-panel__body">
                 <h3 class="bk-h3" data-panel-in>Interlocking surfaces in multiple profiles</h3>
                 <p class="bk-body" data-panel-in>Bone, hexagon, trihex, rhombus and cabbage profiles in grey and red. Interlock spreads vehicle load across the surface, and individual units can be lifted and relaid instead of broken out.</p>
                 <ul class="explorer-panel__specs" data-panel-in>
-                  <li><b>Application</b><span>Driveways, compounds</span></li>
-                  <li><b>Profiles</b><span>Five or more</span></li>
-                  <li><b>Colours</b><span>Grey, red</span></li>
-                  <li><b>Thickness</b><span class="is-tbd">To confirm</span></li>
+                  <li><b>Application</b><span>Driveways, compounds, walkways</span></li>
+                  <li><b>Profiles</b><span>Bone, Hexagon, Trihex, Rhombus</span></li>
+                  <li><b>Colours</b><span>Grey &amp; red</span></li>
+                  <li><b>Thickness</b><span>60 mm (Light traffic) / 80 mm (Heavy duty)</span></li>
                 </ul>
                 <div class="bk-btns" style="margin-top:8px" data-panel-in>
                   <a class="bk-btn bk-btn--primary" href="product-pavers.html">Product detail <span class="bk-btn__ar">&rarr;</span></a>
@@ -525,16 +561,16 @@
 
             <div class="explorer-panel" id="p-louvers" role="tabpanel" hidden>
               <div class="explorer-panel__media">
-                <img src="assets/img/products/louver-1200.jpg" srcset="assets/img/products/louver-800.jpg 800w, assets/img/products/louver-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="A BOKSWA concrete louver block resting on stacked units in the production yard" loading="lazy">
+                <img src="assets/img/products/louver-1200.jpg" srcset="assets/img/products/louver-800.jpg 800w, assets/img/products/louver-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="A BOKSWA concrete louver block resting on stacked units in the production yard" width="1200" height="800" loading="lazy">
               </div>
               <div class="explorer-panel__body">
                 <h3 class="bk-h3" data-panel-in>Cast ventilation that keeps the rain out</h3>
                 <p class="bk-body" data-panel-in>The angled blade lets air and daylight through while shedding rain and blocking the line of sight straight in. It lays in the same course as the walling around it, so the ventilation is simply part of the wall.</p>
                 <ul class="explorer-panel__specs" data-panel-in>
-                  <li><b>Application</b><span>Wall ventilation</span></li>
-                  <li><b>Form</b><span>Cast louver block</span></li>
+                  <li><b>Application</b><span>Wall ventilation, store rooms, basements</span></li>
+                  <li><b>Form</b><span>Cast weatherproof angled blade</span></li>
                   <li><b>Finish</b><span>Fair-face grey</span></li>
-                  <li><b>Nominal sizes</b><span class="is-tbd">To confirm</span></li>
+                  <li><b>Nominal sizes</b><span>390 × 190 × 140 mm</span></li>
                 </ul>
                 <div class="bk-btns" style="margin-top:8px" data-panel-in>
                   <a class="bk-btn bk-btn--primary" href="product-louvers.html">Product detail <span class="bk-btn__ar">&rarr;</span></a>
@@ -545,16 +581,16 @@
 
             <div class="explorer-panel" id="p-kerbs" role="tabpanel" hidden>
               <div class="explorer-panel__media">
-                <img src="assets/img/products/kerb-stack-1200.jpg" srcset="assets/img/products/kerb-stack-800.jpg 800w, assets/img/products/kerb-stack-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="Cross-stacked BOKSWA precast concrete kerb stones in the yard" loading="lazy">
+                <img src="assets/img/products/kerb-stack-1200.jpg" srcset="assets/img/products/kerb-stack-800.jpg 800w, assets/img/products/kerb-stack-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="Cross-stacked BOKSWA precast concrete kerb stones in the yard" width="1200" height="800" loading="lazy">
               </div>
               <div class="explorer-panel__body">
                 <h3 class="bk-h3" data-panel-in>Edge restraint for roads and landscaping</h3>
                 <p class="bk-body" data-panel-in>Precast units for carriageway edges, walkways, parking bays and planting borders. Kerbs are what stop a paved surface from creeping outward under load.</p>
                 <ul class="explorer-panel__specs" data-panel-in>
-                  <li><b>Application</b><span>Roads, walkways</span></li>
-                  <li><b>Form</b><span>Precast kerb</span></li>
-                  <li><b>Profile</b><span>Cast edge</span></li>
-                  <li><b>Nominal sizes</b><span class="is-tbd">To confirm</span></li>
+                  <li><b>Application</b><span>Roads, walkways, car parks</span></li>
+                  <li><b>Form</b><span>Precast solid edge restraint</span></li>
+                  <li><b>Profile</b><span>Cast bevelled edge</span></li>
+                  <li><b>Nominal sizes</b><span>1000 × 250 × 125 mm &amp; 500 × 250 × 125 mm</span></li>
                 </ul>
                 <div class="bk-btns" style="margin-top:8px" data-panel-in>
                   <a class="bk-btn bk-btn--primary" href="product-kerb-stones.html">Product detail <span class="bk-btn__ar">&rarr;</span></a>
@@ -565,16 +601,16 @@
 
             <div class="explorer-panel" id="p-maxpans" role="tabpanel" hidden>
               <div class="explorer-panel__media">
-                <img src="assets/img/products/maxpan-units-1200.jpg" srcset="assets/img/products/maxpan-units-800.jpg 800w, assets/img/products/maxpan-units-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="Stacked BOKSWA maxpan hollow-pot units for suspended floor slabs" loading="lazy">
+                <img src="assets/img/products/maxpan-units-1200.jpg" srcset="assets/img/products/maxpan-units-800.jpg 800w, assets/img/products/maxpan-units-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="Stacked BOKSWA maxpan hollow-pot units for suspended floor slabs" width="1200" height="800" loading="lazy">
               </div>
               <div class="explorer-panel__body">
                 <h3 class="bk-h3" data-panel-in>Panels that simplify slab and ceiling work</h3>
                 <p class="bk-body" data-panel-in>Precast concrete panels designed to streamline suspended floor slabs and ceiling frameworks &mdash; less formwork, less propping and a faster route to a working floor above.</p>
                 <ul class="explorer-panel__specs" data-panel-in>
-                  <li><b>Application</b><span>Floor slabs, ceilings</span></li>
-                  <li><b>Form</b><span>Precast panel</span></li>
-                  <li><b>Benefit</b><span>Reduced formwork</span></li>
-                  <li><b>Nominal sizes</b><span class="is-tbd">To confirm</span></li>
+                  <li><b>Application</b><span>Suspended floor slabs, ribbed ceilings</span></li>
+                  <li><b>Form</b><span>Precast structural hollow pot</span></li>
+                  <li><b>Benefit</b><span>Reduces concrete volume &amp; formwork</span></li>
+                  <li><b>Nominal sizes</b><span>Standard floor slab dimensions</span></li>
                 </ul>
                 <div class="bk-btns" style="margin-top:8px" data-panel-in>
                   <a class="bk-btn bk-btn--primary" href="product-maxpans.html">Product detail <span class="bk-btn__ar">&rarr;</span></a>
@@ -585,16 +621,16 @@
 
             <div class="explorer-panel" id="p-poles" role="tabpanel" hidden>
               <div class="explorer-panel__media">
-                <img src="assets/img/products/fence-poles-1200.jpg" srcset="assets/img/products/fence-poles-800.jpg 800w, assets/img/products/fence-poles-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="Stack of BOKSWA reinforced concrete fence poles with angled tops and pre-cast wire holes" loading="lazy">
+                <img src="assets/img/products/fence-poles-1200.jpg" srcset="assets/img/products/fence-poles-800.jpg 800w, assets/img/products/fence-poles-1200.jpg 1200w" sizes="(max-width:860px) 100vw, 55vw" alt="Stack of BOKSWA reinforced concrete fence poles with angled tops and pre-cast wire holes" width="1200" height="800" loading="lazy">
               </div>
               <div class="explorer-panel__body">
                 <h3 class="bk-h3" data-panel-in>Reinforced posts for permanent perimeters</h3>
                 <p class="bk-body" data-panel-in>Concrete does not rot, warp or need repainting. Reinforced posts for boundary walls, chain-link runs and security fencing that is still standing after the timber alternative has been replaced twice.</p>
                 <ul class="explorer-panel__specs" data-panel-in>
-                  <li><b>Application</b><span>Perimeter fencing</span></li>
-                  <li><b>Form</b><span>Reinforced, angled top</span></li>
-                  <li><b>Benefit</b><span>Rot &amp; termite proof</span></li>
-                  <li><b>Nominal sizes</b><span class="is-tbd">To confirm</span></li>
+                  <li><b>Application</b><span>Perimeter fencing, chain-link, farms</span></li>
+                  <li><b>Form</b><span>Steel-reinforced with angled top &amp; wire holes</span></li>
+                  <li><b>Benefit</b><span>Rot, weather &amp; termite proof</span></li>
+                  <li><b>Nominal sizes</b><span>8.5 ft / 2.6 m total height</span></li>
                 </ul>
                 <div class="bk-btns" style="margin-top:8px" data-panel-in>
                   <a class="bk-btn bk-btn--primary" href="product-fence-poles.html">Product detail <span class="bk-btn__ar">&rarr;</span></a>
@@ -611,7 +647,7 @@
 </section>
 
 <!-- ======================================================================
-     INSIDE THE YARD  (standard section — flex + image + heading + button)
+     INSIDE THE YARD
      ====================================================================== -->
 <section class="bk-section bk-ink" id="yard">
   <div class="bk-wrap">
@@ -630,7 +666,7 @@
       </div>
       <div class="bk-col bk-col--2">
         <div class="bk-figure bk-figure--tall bk-mask">
-          <img src="assets/img/yard/plant-wide-1800.jpg" srcset="assets/img/yard/plant-wide-800.jpg 800w, assets/img/yard/plant-wide-1200.jpg 1200w, assets/img/yard/plant-wide-1800.jpg 1800w" sizes="(max-width:860px) 100vw, 50vw" alt="Wide view of the BOKSWA batching plant with a wheel loader and stacked blocks" loading="lazy">
+          <img src="assets/img/yard/plant-wide-1800.jpg" srcset="assets/img/yard/plant-wide-800.jpg 800w, assets/img/yard/plant-wide-1200.jpg 1200w, assets/img/yard/plant-wide-1800.jpg 1800w" sizes="(max-width:860px) 100vw, 50vw" alt="Wide view of the BOKSWA batching plant with a wheel loader and stacked blocks" width="1800" height="1200" loading="lazy">
         </div>
       </div>
     </div>
@@ -659,7 +695,7 @@
 </section>
 
 <!-- ======================================================================
-     BUILT WITH BOKSWA  (standard — gallery widget + flex filter)
+     BUILT WITH BOKSWA
      ====================================================================== -->
 <section class="bk-section bk-dark" id="projects" data-gallery>
   <div class="bk-wrap">
@@ -682,15 +718,15 @@
     </div>
 
     <div class="bk-gal">
-      <div class="bk-gal__item" data-cat="walling site"><figure class="bk-gal__fig"><img src="assets/img/projects/apartments-build-1200.jpg" alt="Apartment block under construction, block walling behind bamboo scaffolding" loading="lazy"><figcaption>Apartments under construction</figcaption></figure></div>
-      <div class="bk-gal__item" data-cat="walling site"><figure class="bk-gal__fig"><img src="assets/img/projects/roof-trusses-1200.jpg" alt="Roof trusses being fixed over completed block walling" loading="lazy"><figcaption>Trusses over block walling</figcaption></figure></div>
-      <div class="bk-gal__item" data-cat="paving walling"><figure class="bk-gal__fig"><img src="assets/img/projects/villa-paved-drive-800.jpg" alt="Completed two-storey house with a paved approach and driveway" loading="lazy"><figcaption>Completed villa and driveway</figcaption></figure></div>
-      <div class="bk-gal__item" data-cat="paving"><figure class="bk-gal__fig"><img src="assets/img/projects/paving-hex-drive-800.jpg" alt="Hexagonal pavers laid in red and grey along a compound driveway" loading="lazy"><figcaption>Hexagon pavers, red and grey</figcaption></figure></div>
-      <div class="bk-gal__item" data-cat="paving walling"><figure class="bk-gal__fig"><img src="assets/img/projects/home-paved-compound-800.jpg" alt="Completed home with a fully paved compound" loading="lazy"><figcaption>Paved compound</figcaption></figure></div>
-      <div class="bk-gal__item" data-cat="paving site"><figure class="bk-gal__fig"><img src="assets/img/projects/paver-laying-800.jpg" alt="Pavers being laid course by course on a levelled sand bed" loading="lazy"><figcaption>Pavers going down</figcaption></figure></div>
-      <div class="bk-gal__item" data-cat="walling"><figure class="bk-gal__fig"><img src="assets/img/projects/boundary-wall-800.jpg" alt="Hollow-block boundary wall with steel railing above" loading="lazy"><figcaption>Block boundary wall</figcaption></figure></div>
-      <div class="bk-gal__item" data-cat="walling"><figure class="bk-gal__fig"><img src="assets/img/projects/perimeter-wall-800.jpg" alt="Rendered perimeter wall topped with an electric fence" loading="lazy"><figcaption>Perimeter wall</figcaption></figure></div>
-      <div class="bk-gal__item" data-cat="yard"><figure class="bk-gal__fig"><img src="assets/img/yard/curing-field-1200.jpg" alt="Freshly cast blocks curing in the BOKSWA yard" loading="lazy"><figcaption>Curing field</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="walling site"><figure class="bk-gal__fig"><img src="assets/img/projects/apartments-build-1200.jpg" alt="Apartment block under construction, block walling behind bamboo scaffolding" width="1200" height="800" loading="lazy"><figcaption>Apartments under construction</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="walling site"><figure class="bk-gal__fig"><img src="assets/img/projects/roof-trusses-1200.jpg" alt="Roof trusses being fixed over completed block walling" width="1200" height="800" loading="lazy"><figcaption>Trusses over block walling</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="paving walling"><figure class="bk-gal__fig"><img src="assets/img/projects/villa-paved-drive-800.jpg" alt="Completed two-storey house with a paved approach and driveway" width="800" height="533" loading="lazy"><figcaption>Completed villa and driveway</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="paving"><figure class="bk-gal__fig"><img src="assets/img/projects/paving-hex-drive-800.jpg" alt="Hexagonal pavers laid in red and grey along a compound driveway" width="800" height="533" loading="lazy"><figcaption>Hexagon pavers, red and grey</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="paving walling"><figure class="bk-gal__fig"><img src="assets/img/projects/home-paved-compound-800.jpg" alt="Completed home with a fully paved compound" width="800" height="533" loading="lazy"><figcaption>Paved compound</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="paving site"><figure class="bk-gal__fig"><img src="assets/img/projects/paver-laying-800.jpg" alt="Pavers being laid course by course on a levelled sand bed" width="800" height="533" loading="lazy"><figcaption>Pavers going down</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="walling"><figure class="bk-gal__fig"><img src="assets/img/projects/boundary-wall-800.jpg" alt="Hollow-block boundary wall with steel railing above" width="800" height="533" loading="lazy"><figcaption>Block boundary wall</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="walling"><figure class="bk-gal__fig"><img src="assets/img/projects/perimeter-wall-800.jpg" alt="Rendered perimeter wall topped with an electric fence" width="800" height="533" loading="lazy"><figcaption>Perimeter wall</figcaption></figure></div>
+      <div class="bk-gal__item" data-cat="yard"><figure class="bk-gal__fig"><img src="assets/img/yard/curing-field-1200.jpg" alt="Freshly cast blocks curing in the BOKSWA yard" width="1200" height="800" loading="lazy"><figcaption>Curing field</figcaption></figure></div>
     </div>
 
     <div class="bk-btns bk-reveal" style="justify-content:center;width:100%">
@@ -700,14 +736,14 @@
 </section>
 
 <!-- ======================================================================
-     THE PEOPLE  (standard section)
+     THE PEOPLE
      ====================================================================== -->
 <section class="bk-section bk-ink" id="people">
   <div class="bk-wrap">
     <div class="bk-row bk-row--mid">
       <div class="bk-col bk-col--58">
         <div class="bk-figure bk-figure--tall bk-mask">
-          <img src="assets/img/people/team-1800.jpg" srcset="assets/img/people/team-800.jpg 800w, assets/img/people/team-1200.jpg 1200w, assets/img/people/team-1800.jpg 1800w" sizes="(max-width:860px) 100vw, 58vw" alt="The BOKSWA production team in high-visibility vests and hard hats" loading="lazy">
+          <img src="assets/img/people/team-1800.jpg" srcset="assets/img/people/team-800.jpg 800w, assets/img/people/team-1200.jpg 1200w, assets/img/people/team-1800.jpg 1800w" sizes="(max-width:860px) 100vw, 58vw" alt="The BOKSWA production team in high-visibility vests and hard hats" width="1800" height="1200" loading="lazy">
           <figcaption class="bk-figure__cap">The BOKSWA yard crew</figcaption>
         </div>
       </div>
@@ -732,9 +768,7 @@
 </section>
 
 <!-- ======================================================================
-     LEADERSHIP — GENERAL MANAGER  (standard section, all native widgets)
-     Container + Image + Text + Heading + Blockquote + Buttons.
-     The name line reads "General Manager" until his name is supplied.
+     LEADERSHIP — GENERAL MANAGER
      ====================================================================== -->
 <section class="bk-section bk-dark bk-leader" id="leadership">
   <div class="bk-wrap">
@@ -744,7 +778,7 @@
           <img src="assets/img/people/portrait-2-1200.jpg"
                srcset="assets/img/people/portrait-2-800.jpg 800w, assets/img/people/portrait-2-1200.jpg 1200w, assets/img/people/portrait-2-1800.jpg 1800w"
                sizes="(max-width:860px) 100vw, 42vw"
-               alt="General Manager of BOKSWA Investments (U) Limited in a branded vest and BOKSWA hard hat" loading="lazy">
+               alt="General Manager of BOKSWA Investments (U) Limited in a branded vest and BOKSWA hard hat" width="1200" height="1500" loading="lazy">
         </figure>
       </div>
       <div class="bk-col bk-col--58 bk-col--pl">
@@ -774,7 +808,7 @@
 </section>
 
 <!-- ======================================================================
-     LOCATION & LOGISTICS  (standard — icon boxes use FA5 names)
+     LOCATION & LOGISTICS
      ====================================================================== -->
 <section class="bk-section bk-dark" id="location">
   <div class="bk-wrap">
@@ -808,8 +842,6 @@
         </div>
       </div>
       <div class="bk-col bk-col--2">
-        <!-- Live map pinned to the yard's exact coordinates (0.404263, 32.700383).
-             In Elementor: native Google Maps widget with these coordinates. -->
         <div class="bk-map bk-figure--tall bk-mask">
           <iframe class="bk-map__frame"
             title="Map showing the exact location of the BOKSWA yard at Joggo, Bukerere Road"
@@ -825,18 +857,15 @@
 </section>
 
 <!-- ======================================================================
-     SCATTER CTA  [hybrid — native widgets + one behaviour hook]
-     Every photograph is a native Image widget positioned absolutely via its
-     --x / --y / --w / --r values. The script only reads data-depth and --r
-     to drift them; the headline, copy and buttons are native widgets on top.
+     SCATTER CTA
      ====================================================================== -->
 <section class="bk-scatter" id="cta">
-  <img class="bk-scatter__img" data-depth=".5"  style="--x:4%;--y:9%;--w:clamp(130px,15vw,230px);--r:-9deg"  src="assets/img/products/hollow-block-800.jpg"  alt="BOKSWA three-core hollow concrete block" loading="lazy">
-  <img class="bk-scatter__img" data-depth=".7"  style="--x:79%;--y:5%;--w:clamp(120px,14vw,210px);--r:8deg"   src="assets/img/products/paver-hex-red-800.jpg" alt="Red hexagon interlocking concrete paver" loading="lazy">
-  <img class="bk-scatter__img" data-depth=".35" style="--x:1%;--y:60%;--w:clamp(140px,16vw,250px);--r:6deg"   src="assets/img/products/fence-poles-800.jpg"      alt="Reinforced precast concrete fence poles" loading="lazy" data-mob="hide">
-  <img class="bk-scatter__img" data-depth=".45" style="--x:81%;--y:58%;--w:clamp(130px,15vw,240px);--r:-6deg" src="assets/img/products/maxpan-units-800.jpg" alt="Maxpan precast floor slab units" loading="lazy">
-  <img class="bk-scatter__img" data-depth=".8"  style="--x:9%;--y:83%;--w:clamp(110px,12vw,185px);--r:-4deg" src="assets/img/yard/truck-front-800.jpg"     alt="BOKSWA delivery truck dispatching concrete products" loading="lazy" data-mob="hide">
-  <img class="bk-scatter__img" data-depth=".6"  style="--x:77%;--y:85%;--w:clamp(100px,11vw,175px);--r:11deg" src="assets/img/products/solid-block-800.jpg"   alt="High-density solid concrete building block" loading="lazy" data-mob="hide">
+  <img class="bk-scatter__img" data-depth=".5"  style="--x:4%;--y:9%;--w:clamp(130px,15vw,230px);--r:-9deg"  src="assets/img/products/hollow-block-800.jpg"  alt="BOKSWA three-core hollow concrete block" width="800" height="533" loading="lazy">
+  <img class="bk-scatter__img" data-depth=".7"  style="--x:79%;--y:5%;--w:clamp(120px,14vw,210px);--r:8deg"   src="assets/img/products/paver-hex-red-800.jpg" alt="Red hexagon interlocking concrete paver" width="800" height="533" loading="lazy">
+  <img class="bk-scatter__img" data-depth=".35" style="--x:1%;--y:60%;--w:clamp(140px,16vw,250px);--r:6deg"   src="assets/img/products/fence-poles-800.jpg"      alt="Reinforced precast concrete fence poles" width="800" height="533" loading="lazy" data-mob="hide">
+  <img class="bk-scatter__img" data-depth=".45" style="--x:81%;--y:58%;--w:clamp(130px,15vw,240px);--r:-6deg" src="assets/img/products/maxpan-units-800.jpg" alt="Maxpan precast floor slab units" width="800" height="533" loading="lazy">
+  <img class="bk-scatter__img" data-depth=".8"  style="--x:9%;--y:83%;--w:clamp(110px,12vw,185px);--r:-4deg" src="assets/img/yard/truck-front-800.jpg"     alt="BOKSWA delivery truck dispatching concrete products" width="800" height="533" loading="lazy" data-mob="hide">
+  <img class="bk-scatter__img" data-depth=".6"  style="--x:77%;--y:85%;--w:clamp(100px,11vw,175px);--r:11deg" src="assets/img/products/solid-block-800.jpg"   alt="High-density solid concrete building block" width="800" height="533" loading="lazy" data-mob="hide">
 
   <div class="bk-wrap bk-scatter__copy">
     <p class="bk-eyebrow bk-reveal" style="justify-content:center">Request a quote</p>
@@ -856,7 +885,7 @@
 </main>
 
 <!-- ======================================================================
-     FOOTER  →  Xpro Theme Builder footer template
+     FOOTER
      ====================================================================== -->
 <footer class="bk-footer">
   <div class="bk-wrap">
